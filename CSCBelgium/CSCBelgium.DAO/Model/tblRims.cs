@@ -26,8 +26,8 @@ namespace CSCBelgium.DAO.Model
         public int RimPrice { get; set; }
         public byte Sold { get; set; }
     
+        public virtual tblRimBrands tblRimBrands { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblRimImages> tblRimImages { get; set; }
-        public virtual tblRimBrands tblRimBrands { get; set; }
     }
 }

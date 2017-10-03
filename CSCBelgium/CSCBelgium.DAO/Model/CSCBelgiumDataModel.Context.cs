@@ -26,13 +26,13 @@ namespace CSCBelgium.DAO.Model
         }
     
         public virtual DbSet<tblBrands> tblBrands { get; set; }
+        public virtual DbSet<tblCars> tblCars { get; set; }
         public virtual DbSet<tblColors> tblColors { get; set; }
         public virtual DbSet<tblImages> tblImages { get; set; }
         public virtual DbSet<tblPosts> tblPosts { get; set; }
-        public virtual DbSet<tblCars> tblCars { get; set; }
-        public virtual DbSet<tblSlides> tblSlides { get; set; }
+        public virtual DbSet<tblRimBrands> tblRimBrands { get; set; }
         public virtual DbSet<tblRimImages> tblRimImages { get; set; }
         public virtual DbSet<tblRims> tblRims { get; set; }
-        public virtual DbSet<tblRimBrands> tblRimBrands { get; set; }
+        public virtual DbSet<tblSlides> tblSlides { get; set; }
     }
 }

@@ -51,19 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\tblRimBrands.cs">
-      <DependentUpon>CSCBelgiumDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\tblRimImages.cs">
-      <DependentUpon>CSCBelgiumDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\tblRims.cs">
-      <DependentUpon>CSCBelgiumDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\tblSlides.cs">
-      <DependentUpon>CSCBelgiumDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblColorsDAO.cs" />
     <Compile Include="Model\CSCBelgiumDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -94,6 +81,19 @@
     <Compile Include="Model\tblPosts.cs">
       <DependentUpon>CSCBelgiumDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\tblRimBrands.cs">
+      <DependentUpon>CSCBelgiumDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tblRimImages.cs">
+      <DependentUpon>CSCBelgiumDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tblRims.cs">
+      <DependentUpon>CSCBelgiumDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tblSlides.cs">
+      <DependentUpon>CSCBelgiumDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblColorsDAO.cs" />
     <Compile Include="tblBrandsDAO.cs" />
     <Compile Include="tblImagesDAO.cs" />
     <Compile Include="tblPostsDAO.cs" />
@@ -104,18 +104,20 @@
     <Compile Include="tblSlidesDAO.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="Model\CSCBelgiumDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CSCBelgiumDataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="Model\CSCBelgiumDataModel.edmx.diagram">
       <DependentUpon>CSCBelgiumDataModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Model\CSCBelgiumDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -127,9 +129,6 @@
       <DependentUpon>CSCBelgiumDataModel.edmx</DependentUpon>
       <LastGenOutput>CSCBelgiumDataModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
