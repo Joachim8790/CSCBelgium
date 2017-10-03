@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+@{
+    tblCarsService service = new tblCarsService();
+    int CarsInStock = service.getAllCars().Where(a => a.Sold == 0).Count();
+
+}
+@using CSCBelgium.Service
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/normalize.css">
+    <link rel="stylesheet" href="~/Content/styles.css">
+    <link rel="stylesheet" href="~/Content/font-awesome.css">
+
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' id='BNS-Corner-Logo-Style-css' href='~/Content/social_icons_from_Techandallcom.css' type='text/css' media='screen' />
+
+
+</head>
+<body>
+    @if ((string)ViewContext.RouteData.Values["action"] == "Cars")
+    {
+    }
+    else
+    {
+        <nav>
+
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo"><img class="brandlogo" src="~/Content/Images/logo.png" width="280" height="100" /></a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><b><a href="@Url.Action("Index","Home")">home</a></b></li>
+                    <li><b><a href="@Url.Action("Cars","Home")">wagens <span class="new badge">@CarsInStock in stock</span></a></b></li>
+                    <li><b><a href="@Url.Action("SellCar","Home")">verkoop uw wagen</a></b></li>
+                    <li><b><a href="@Url.Action("Rims","Home")">velgen</a></b></li>
+                    <li><b><a href="@Url.Action("Services","Home")">services</a></b></li>
+                    <li><b><a href="@Url.Action("Contact","Home")">contact</a></b></li>
+                    
+                </ul>
+
+
+
+                <ul class="side-nav" id="mobile-demo">
+                    <li><b><a href="@Url.Action("Index","Home")">home</a></b></li>
+                    <li><b><a href="@Url.Action("Cars","Home")">wagens <span class="new badge">@CarsInStock in stock</span></a></b></li>
+                    <li><b><a href="@Url.Action("SellCar","Home")">verkoop uw wagen</a></b></li>
+                    <li><b><a href="@Url.Action("Rims","Home")">velgen</a></b></li>
+                    <li><b><a href="@Url.Action("Services","Home")">services</a></b></li>
+                    <li><b><a href="@Url.Action("Contact","Home")">contact</a></b></li>
+                   
+                </ul>
+
+            </div>
+
+        </nav>
+    }
+
+        <div>
+            @RenderBody()
+
+
+
+        </div>
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Social Media</h5>
+                        <div class="social-icons">
+                            <ul>
+                                <li class="facebook" style="background-color: #f0f0f0">
+                                    <a href="http://www.twitter.com/techandallcom" target="_blank">Twitter</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Navigatie</h5>
+                        <ul>
+                            <li><b><a href="@Url.Action("Index","Home")">home</a></b></li>
+                            <li><b><a href="@Url.Action("Cars","Home")">wagens <span class="new badge">@CarsInStock in stock</span></a></b></li>
+                            <li><b><a href="@Url.Action("SellCar","Home")">verkoop uw wagen</a></b></li>
+                            <li><b><a href="@Url.Action("Rims","Home")">velgen</a></b></li>
+                            <li><b><a href="@Url.Action("Services","Home")">services</a></b></li>
+                            <li><b><a href="@Url.Action("Contact","Home")">contact</a></b></li>
+                            @Html.Partial("_LoginPartial")
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    © 2017 Copyright CSC Belgium
+
+                </div>
+            </div>
+        </footer>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/bootstrap")
+
+        @RenderSection("scripts", required: false)
+</body>
+</html>

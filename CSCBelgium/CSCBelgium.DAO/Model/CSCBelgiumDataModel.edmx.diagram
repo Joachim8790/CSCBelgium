@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="21f532bcc6474cee8c63dd0a2e4054d3" Name="Diagram1">
+        <EntityTypeShape EntityType="CSCbelgiumDatabaseModel.tblBrands" Width="1.5" PointX="0.75" PointY="6" />
+        <EntityTypeShape EntityType="CSCbelgiumDatabaseModel.tblColors" Width="1.5" PointX="0.75" PointY="2" />
+        <EntityTypeShape EntityType="CSCbelgiumDatabaseModel.tblImages" Width="1.5" PointX="5.25" PointY="1.75" />
+        <EntityTypeShape EntityType="CSCbelgiumDatabaseModel.tblPosts" Width="1.5" PointX="2.75" PointY="5.75" />
+        <EntityTypeShape EntityType="CSCbelgiumDatabaseModel.tblCars" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="CSCbelgiumDatabaseModel.FK_tblCars_tblBrands" />
+        <AssociationConnector Association="CSCbelgiumDatabaseModel.FK_tblCars_tblColor" />
+        <AssociationConnector Association="CSCbelgiumDatabaseModel.FK_tblImages_tblCars" />
+        <EntityTypeShape EntityType="CSCbelgiumDatabaseModel.tblSlides" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="CSCbelgiumDatabaseModel.tblRimImages" Width="1.5" PointX="5.25" PointY="9" />
+        <EntityTypeShape EntityType="CSCbelgiumDatabaseModel.tblRims" Width="1.5" PointX="3" PointY="8.75" />
+        <AssociationConnector Association="CSCbelgiumDatabaseModel.FK_tblRims_tblRimImages" />
+        <EntityTypeShape EntityType="CSCbelgiumDatabaseModel.tblRimBrands" Width="1.5" PointX="7.375" PointY="0.875" />
+        <AssociationConnector Association="CSCbelgiumDatabaseModel.FK_tblRimBrands_tblRims" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

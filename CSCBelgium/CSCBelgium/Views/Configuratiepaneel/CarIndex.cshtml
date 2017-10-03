@@ -1,0 +1,132 @@
+﻿@model CSCBelgium.ViewModels.CarIndexViewModel
+@{
+    ViewBag.Title = "CarIndex";
+    Layout = "~/Views/Shared/_LayoutConfiguratiepaneel.cshtml";
+    byte sold = (byte)1;
+    tblCarsService service = new tblCarsService();
+}
+@using CSCBelgium.Views.Configuratiepaneel.CustomCode
+@using CSCBelgium.Service;
+<nav style="height:90px;">
+    <div class="nav-wrapper">
+        <a style="float:right;" href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="left">
+            <li style="line-height:0;"><a href="@Url.Action("AddCar", "Configuratiepaneel")"><i style="display:flex;align-items:center" class='material-icons tooltipped' data-position="bottom" data-delay="1" data-tooltip="Auto toevoegen">time_to_leave</i></a></li>
+            <li style="line-height:0;"><a href="@Url.Action("AddColor", "Configuratiepaneel")"><i style="display:flex;align-items:center" class='material-icons tooltipped' data-position="bottom" data-delay="1" data-tooltip="Kleur toevoegen">color_lens</i></a></li>
+            <li style="line-height:0;"><a href="@Url.Action("AddBrand", "Configuratiepaneel")"><i style="display:flex;align-items:center" class='material-icons tooltipped' data-position="bottom" data-delay="1" data-tooltip="Merk toevoegen">local_activity</i></a></li>
+        </ul>
+
+    </div>
+</nav>
+<div class="main">
+    <div class="form-horizontal">
+
+    <h4>Auto-overzicht (@Model.CarsInStock in stock)</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <table id="tabel" class="table">
+            <thead>
+                <tr>
+                    <th>merk</th>
+                    <th>model</th>
+                    <th>prijs</th>
+                    <th>beschrijving</th>
+                    <th>kleur</th>
+                    <th>bouwjaar</th>
+                    <th>kilometerstand</th>
+                    <th>verkocht</th>
+                    <th>afbeeldingen</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Cars.Count(); i++)
+                {
+                    <tr  id=@i>
+                        <td>@Model.Cars.ElementAt(i).tblBrands.BrandName</td>
+                        <td>@Model.Cars.ElementAt(i).CarModel</td>
+                        <td>@Model.Cars.ElementAt(i).CarPrice.ToString("€#,##0")</td>
+                        <td>@Model.Cars.ElementAt(i).CarDescription</td>
+                        <td>@Model.Cars.ElementAt(i).tblColors.ColorName</td>
+
+                        <td>@Model.Cars.ElementAt(i).CarYearOfConstruction.ToString()</td>
+                        <td>@Model.Cars.ElementAt(i).CarKilometers.ToString()</td>
+                       
+                            <td>
+                                    <div class="input-field col s12 form">
+                                        @if (service.isSold(service.getAllCars().ElementAt(i)))
+                                        {
+                                            @Html.EnumDropDownListFor(model => model.JaNee, new { @id = "ddl" + i, @onchange = string.Format("UpdateSold({0})", i) })
+                                        }
+                                        else
+                                        {
+                                            @Html.EnumDropDownListFor(model => model.NeeJa, new { @id = "ddl" + i, @onchange = string.Format("UpdateSold({0})", i) })
+                                        }
+                                     
+
+                                </div>
+
+
+                            </td>
+
+                        
+                        <td>
+                            @foreach (var image in Model.Images.Where(a => a.CarID == Model.Cars.ElementAt(i).CarID))
+                            {
+                                <img alt="" class="postimage" src="data:image;base64,@System.Convert.ToBase64String(image.Image)" width="80" height="80" />
+                            }
+                        
+                        </td>
+                        
+                        <td>
+                            @Ajax.RawActionLink(string.Format("<i class='material-icons tooltipped' data-position='bottom' data-delay='1' data-tooltip='Auto verwijderen'>close</i>"), "VerwijderAuto", null, new { id = Model.Cars.ElementAt(i).CarID }, new AjaxOptions { HttpMethod = "DELETE", Confirm = "Ben je zeker dat je deze auto wilt verwijderen?", OnComplete = string.Format("DeleteRijInTabel({0})", i) }, new { @class = "class" })
+                        </td>
+                    </tr>
+
+
+
+                }
+
+            </tbody>
+        </table>
+
+
+
+
+
+
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        <script type="text/javascript">
+                function DeleteRijInTabel(id) {
+                    console.log(id);
+                    console.log("completed");
+                    $("#" + id).remove();
+                }
+                function UpdateSold(i) {
+                    var strSelected = "";
+                    console.log($("#ddl" + i + "option:selected"));
+                    $("#ddl" + i + " option:selected").each(function () {
+                        console.log($(this)[0].value);
+                        strSelected += $(this)[0].value + "b" + i;
+                    });
+                    $.ajax({
+                        url: '@Url.Action("ddlChanged","Configuratiepaneel")',
+        contentType: "application/json; charset=utf-8",
+        data: "{'parameter': '" + strSelected + "'}",
+        type: 'POST',
+        cache: false,
+        
+    });
+                }
+
+        </script>
+    }
+
+
+</div>
+</div>
+

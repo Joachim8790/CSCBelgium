@@ -1,0 +1,184 @@
+﻿@model CSCBelgium.ViewModels.AddCarViewModel
+@{
+    ViewBag.Title = "AddCar";
+    Layout = "~/Views/Shared/_LayoutConfiguratiepaneel.cshtml";
+}
+
+<nav style="height:90px;">
+    <div class="nav-wrapper">
+        <a style="float:right;" href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="left"></ul>
+
+    </div>
+</nav>
+<div class="main">
+    <h4>Een auto toevoegen</h4>
+
+    <div class="row">
+        <div class="col-md-12">
+            <section id="loginForm">
+                <div class="contactform">
+                    @using (Html.BeginForm("AddCar", "Configuratiepaneel", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="row">
+                            <div class="input-field col s12">
+                                    @Html.DropDownListFor(model => model.selectedBrandId, new SelectList(Model.brandChoice, "BrandID", "BrandName"), "Kies een merk... ")
+                                    <label>Merk</label>
+                                </div>
+                                </div>
+                            <div class="row">
+                                <div class="input-field col s12 form">
+                                    @Html.LabelFor(m => m.car.CarModel, new { @for = "txtCarModel" })
+                                    @Html.TextBoxFor(m => m.car.CarModel, new { @class = "validate", id = "txtCarModel" })
+
+
+                                </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12 form">
+                                        @Html.LabelFor(m => m.car.CarPrice, new { @for = "txtCarPrice" })
+                                        @Html.TextBoxFor(m => m.car.CarPrice, new { @class = "validate", id = "txtCarPrice" })
+
+
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            @Html.LabelFor(m => m.car.CarDescription, new { @for = "txtCarDescription" })
+                                            @Html.TextBoxFor(m => m.car.CarDescription, new { @class = "validate", id = "txtCarDescription" })
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            @Html.LabelFor(m => m.car.CarEquipment, new { @for = "txtCarSpecification" })
+                                            @Html.TextAreaFor(m => m.car.CarEquipment, new { @class = "validate materialize-textarea", id = "txtCarSpecification" })
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            @Html.DropDownListFor(model => model.selectedColorId, new SelectList(Model.colorChoice, "ColorID", "ColorName"), "Kies een kleur... ")
+                                            <label>Kleur</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            @Html.EnumDropDownListFor(model => model.fuelChoice, "Kies een brandstof... ")
+                                            <label>Brandstof</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            @Html.EnumDropDownListFor(model => model.transmissionChoice, "Kies een transmissie... ")
+                                            <label>Transmissie</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            @Html.LabelFor(m => m.car.CarYearOfConstruction, new { @for = "txtCarYearOfConstruction" })
+                                            @Html.TextBoxFor(m => m.car.CarYearOfConstruction, new { @class = "validate", id = "txtCarYearOfConstruction" })
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            @Html.LabelFor(m => m.car.C02Emissions, new { @for = "txtC02Emissions" })
+                                            @Html.TextBoxFor(m => m.car.C02Emissions, new { @class = "validate", id = "txtC02Emissions" })
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            @Html.LabelFor(m => m.car.PowerPK, new { @for = "txtPowerPK" })
+                                            @Html.TextBoxFor(m => m.car.PowerPK, new { @class = "validate", id = "txtPowerPK" })
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            @Html.LabelFor(m => m.car.PowerKW, new { @for = "txtPowerKW" })
+                                            @Html.TextBoxFor(m => m.car.PowerKW, new { @class = "validate", id = "txtPowerKW" })
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            @Html.LabelFor(m => m.car.CarKilometers, new { @for = "txtCarKilometers" })
+                                            @Html.TextBoxFor(m => m.car.CarKilometers, new { @class = "validate", id = "txtCarKilometers" })
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            @Html.LabelFor(m => m.car.FirstRegistration, new { @for = "txtFirstRegistration" })
+                                            @Html.TextBoxFor(m => m.car.FirstRegistration, new { @class = "datepicker", id = "txtFirstRegistration", })
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            @Html.LabelFor(m => m.car.CylinderCapacity, new { @for = "txtCylinderCapacity" })
+                                            @Html.TextBoxFor(m => m.car.CylinderCapacity, new { @class = "validate", id = "txtCylinderCapacity" })
+
+
+                                        </div>
+                                    </div>
+                                    @Html.HiddenFor(m => m.brandChoice);
+                                    @Html.HiddenFor(m => m.colorChoice);
+                                    @Html.HiddenFor(m => m.fuelChoice);
+                                    @Html.HiddenFor(m => m.transmissionChoice);
+
+                                    <div class="row">
+
+                                        <div class="input-field col s12 form">
+                                            <div class="field">
+                                                <div class="file-field input-field">
+                                                    <div class="btn">
+                                                        <span>Afbeeldingen</span>
+                                                        <input  multiple type="file" name="files" id="files" accept="image/*">
+                                                    </div>
+                                                    <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            <input type="submit" value="Aanmaken" class="btn btn-default" />
+
+
+                                        </div>
+                                    </div>
+                                  
+
+
+
+                    }
+                                </div>
+            </section>
+        </div>
+
+    </div>
+
+</div>
+
+
+

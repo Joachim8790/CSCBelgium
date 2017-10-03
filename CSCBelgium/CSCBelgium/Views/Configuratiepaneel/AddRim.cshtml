@@ -1,0 +1,94 @@
+﻿@model CSCBelgium.ViewModels.AddRimViewModel
+
+@{
+    ViewBag.Title = "AddRim";
+    Layout = "~/Views/Shared/_LayoutConfiguratiepaneel.cshtml";
+}
+<nav style="height:90px;">
+    <div class="nav-wrapper">
+        <a style="float:right;" href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="left"></ul>
+
+    </div>
+</nav>
+<div class="main">
+    <h4>Een set velgen toevoegen</h4>
+
+    <div class="row">
+        <div class="col-md-12">
+            <section id="loginForm">
+                <div class="contactform">
+                    @using (Html.BeginForm("AddRim", "Configuratiepaneel", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="row">
+                            <div class="input-field col s12">
+                                @Html.DropDownListFor(model => model.selectedBrandId, new SelectList(Model.brandChoice, "BrandID", "BrandName"), "Kies een merk... ")
+                                <label>Merk</label>
+                            </div>
+                        </div>
+                                <div class="row">
+                                    <div class="input-field col s12 form">
+                                        @Html.LabelFor(m => m.rim.RimModel, new { @for = "txtRimModel" })
+                                        @Html.TextBoxFor(m => m.rim.RimModel, new { @class = "validate", id = "txtRimModel" })
+
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12 form">
+                                        @Html.LabelFor(m => m.rim.RimPrice, new { @for = "txtRimPrice" })
+                                        @Html.TextBoxFor(m => m.rim.RimPrice, new { @class = "validate", id = "txtRimPrice" })
+
+
+                                    </div>
+                                </div>
+
+                                    @Html.HiddenFor(m => m.brandChoice);
+
+                        <div class="row">
+
+                            <div class="input-field col s12 form">
+                                <div class="field">
+                                    <div class="file-field input-field">
+                                        <div class="btn">
+                                            <span>Afbeeldingen</span>
+                                            <input multiple type="file" name="files" id="files" accept="image/*">
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input class="file-path validate" type="text">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            <input type="submit" value="Aanmaken" class="btn btn-default" />
+
+
+                                        </div>
+                                    </div>
+
+
+
+
+                    }
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+

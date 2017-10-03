@@ -1,0 +1,261 @@
+﻿@model CSCBelgium.ViewModels.HomeViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+@using CSCBelgium.Views.Configuratiepaneel.CustomCode;
+<div class="slider custom" style="height:550px;">
+    <ul class="slides" style="height:550px;">
+        @for (int i = 0; i < Model.slides.Count(); i++)
+        {
+            if (Model.slides.ElementAt(i).CaptionAlignment == Uitlijning.Links.ToString())
+            {
+                <li>
+
+                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.slides.Select(a => a.SlideImage).ElementAt(i))"/> <!-- random image -->
+                    <div class="caption left-align">
+                        <h3>@Model.slides.ElementAt(i).CaptionText</h3>
+                    </div>
+                </li>
+            }
+            else
+            {
+                if (Model.slides.ElementAt(i).CaptionAlignment == Uitlijning.Midden.ToString())
+                {
+                    <li>
+
+                        <img src="data:image;base64,@System.Convert.ToBase64String(Model.slides.Select(a => a.SlideImage).ElementAt(i))" /> <!-- random image -->
+                        <div class="caption center-align">
+                            <h3>@Model.slides.ElementAt(i).CaptionText</h3>
+                        </div>
+                    </li>
+                }
+                else
+                {
+                    <li>
+
+                        <img src="data:image;base64,@System.Convert.ToBase64String(Model.slides.Select(a => a.SlideImage).ElementAt(i))" /> <!-- random image -->
+                        <div class="caption right-align">
+                            <h3>@Model.slides.ElementAt(i).CaptionText</h3>
+                        </div>
+                    </li>
+                }
+            }
+
+        }
+    </ul>
+    <nav id="nav-arrows" class="nav-arrows">
+        <span class="nav-arrow-prev">Previous</span>
+        <span class="nav-arrow-next">Next</span>
+    </nav>
+</div>
+
+<div class="black_region">
+    <div class="row" id="circles">
+        <div class="margin">
+            <div class="col-md-4">
+                <ul class="ch-grid">
+                    <li>
+                        <a href="@Url.Action("SellCar","Home")">
+                            <div class="ch-item ch-img-1">
+                                <div class="ch-info">
+                                    <h3>Verkoop uw auto</h3>
+                                    <p>Wij kopen uw auto tegen een voordelig tarief</p>
+                                </div>
+                            </div>
+                            </a>
+</li>
+                </ul>
+
+
+            </div>
+
+            <div class="col-md-4">
+                <ul class="ch-grid">
+                    <li>
+                        <a href="@Url.Action("Cars","Home")">
+                            <div class="ch-item ch-img-2">
+                                <div class="ch-info">
+                                    <h3>Ons assortiment</h3>
+                                    <p>Bekijk hier ons volledig assortiment</p>
+                                </div>
+                            </div>
+                            </a>
+</li>
+                </ul>
+            </div>
+
+
+            <div class="col-md-4">
+                <ul class="ch-grid">
+                    
+                        <li>
+                            <a href="@Url.Action("Rims","Home")">
+                                <div class="ch-item ch-img-3">
+                                    <div class="ch-info">
+                                        <h3>Velgen</h3>
+                                        <p>Bekijk ons assortiment velgen </p>
+                                    </div>
+                                </div>
+                            </a>
+</li>
+                    
+                </ul>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="welcome">
+   
+    <div class="customcontainer">
+        <h2>carefully selected cars</h2>
+        <h3>premium selection & services</h3>
+    <div class="row"><div class="col-md-12">
+
+    <p>
+        <i class="material-icons">format_quote</i><br />
+        Wij bij Carefully Selected Cars, of kortweg CSC streven naar snelle service waar onze klanten centraal staan.
+        Naast ons aanbod van luxe tweedehands wagens, bieden we ook velgen en andere services aan. Aan het hoofd van het bedrijf staan 2 jonge ambiteuze ondernemers die bij ons het verschil zullen maken.
+    </p>
+</div>
+    </div>
+   
+        <div class="row" style="margin-top:40px;">
+            <div class="col-md-6">
+                <div class="box border-radius-left">
+                    <div class="avatar">
+                        <img src="~/Content/Images/avatarDefault.png">
+                    </div>
+                    <div class="box-inner">
+                        <h3 class="name">Lucas Alpay</h3>
+                        <h4 class="occupation">Zaakvoerder</h4><br />
+                        <h4 style="font-size:1.2rem;"><i>Lucas@csc-belgium.be</i></h4>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="box border-radius-right">
+                    <div class="avatar">
+                        <img src="~/Content/Images/avatarDefault.png">
+                    </div>
+                    <div class="box-inner">
+                        <h3 class="name">Jonas Vaernewijck</h3>
+                        <h4 class="occupation">Zaakvoerder</h4><br />
+                        <h4 style="font-size:1.2rem;"><i>Jonas@csc-belgium.be</i></h4>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<div class="black_region">
+    <div class="contactform">
+@using (Html.BeginForm("Index", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form"}))
+{
+    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+
+        <div class="col-md-12">
+            <h3>Wenst u een afspraak</h3>
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12 form">
+                        <i class="material-icons prefix">account_circle</i>
+                        
+                         
+                                @Html.LabelFor(m => m.name, new { @for = "txtname" })
+                                @Html.TextBoxFor(m => m.name, new { @class = "validate data-required", id = "txtname" })
+
+
+                           
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 form">
+                        <i class="material-icons prefix">email</i>
+
+
+                        @Html.LabelFor(m => m.emailaddress, new { @for = "txtemailaddress",@class="data-errorEMAIL" })
+                        @Html.TextBoxFor(m => m.emailaddress, new { @class = "validate data-required", @type="email" , id = "txtemailaddress" })
+
+
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12 form">
+                        <i class="material-icons prefix">create</i>
+
+
+                        @Html.LabelFor(m => m.subject, new { @for = "txtsubject" })
+                        @Html.TextBoxFor(m => m.subject, new { @class = "validate data-required", id = "txtsubject" })
+
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 form">
+                        <i class="material-icons prefix">message</i>
+
+
+                        @Html.LabelFor(m => m.message, new { @for = "txtmessage" })
+                        @Html.TextAreaFor(m => m.message, new { @class = "materialize-textarea data-required", id = "txtmessage" })
+
+
+
+                    </div>
+                </div>
+                <div class="row" style="text-align:center;">
+                    <button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">send</i>Verzenden</button>
+                </div>
+            </form>
+        </div>
+
+        </div>
+}
+    </div>
+</div>
+<div class="white_region">
+    <h3>News & Events</h3>
+    <div class="row" id="posts">
+        
+            @foreach (var post in Model.posts)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card post">
+                        <div class="card-image waves-effect waves-block waves-light" style="height:250px;width:100%;background:url(data:image;base64,@System.Convert.ToBase64String(post.PostImage)) no-repeat center center ;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+                            @*<img alt="" class="activator" src="data:image;base64,@System.Convert.ToBase64String(post.PostImage)" />*@
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">@post.PostTitle.ToString()</span>
+                           
+                        </div>
+                        <div class="card-reveal">
+                         
+                            <span class="card-title grey-text text-darken-4">@post.PostTitle.ToString()<i class="material-icons right">close</i></span>
+                            <p>@post.PostDescription.ToString()</p>
+                        </div>
+                    </div>
+                </div>
+            }
+               
+    </div>
+</div>

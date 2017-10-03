@@ -1,0 +1,74 @@
+﻿@model CSCBelgium.ViewModels.CarsViewModel
+    if()
+<ul class="collapsible" data-collapsible="accordion">
+    <li>
+        <div class="collapsible-header"><i class="material-icons">filter_1</i>Filter</div>
+        <div class="collapsible-body">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <section id="loginForm">
+                        <div class="contactform">
+                            @using (Html.BeginForm("Cars", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <hr />
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="input-field col s12">
+                                            @Html.DropDownListFor(model => model.selectedBrandId, new SelectList(Model.brandChoice, "BrandID", "BrandName"), "Kies een merk... ")
+                                            <label>Merk</label>
+                                        </div>
+
+
+                                        <div class="input-field col s12 form">
+                                            @Html.DropDownListFor(model => model.selectedColorId, new SelectList(Model.colorChoice, "ColorID", "ColorName"), "Kies een kleur... ")
+                                            <label>Kleur</label>
+                                        </div>
+
+
+                                        <div class="input-field col s12 form">
+                                            @Html.EnumDropDownListFor(model => model.fuelChoice, "Kies een brandstof... ")
+                                            <label>Kleur</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="input-field col s12 form">
+                                            @Html.EnumDropDownListFor(model => model.transmissionChoice, "Kies een transmissie... ")
+                                            <label>Transmissie</label>
+                                        </div>
+
+                                        <div class="sliders">
+                                            <div class="input-field col s12 form">
+                                                <h6 class="customlabel">Prijs per 1000</h6>
+                                                <div id="price-slider"></div>
+
+                                            </div>
+                                        </div>
+                                        <div class="sliders">
+                                            <div class="input-field col s12 form">
+                                                <h6 class="customlabel">Kilometerstand per 1000</h6>
+                                                <div id="km-slider"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                            }
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+
+
+        </div>
+    </li>
+</ul>

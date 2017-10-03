@@ -1,0 +1,178 @@
+﻿@model CSCBelgium.ViewModels.SellCarViewModel
+
+<div class="main" style="margin:0;padding:0;">
+    <h4>Aanvraag tot verkoop</h4>
+
+    <div class="row">
+        <div class="col-md-12">
+            <section id="loginForm">
+                <div class="contactform">
+                    @using (Html.BeginForm("SellCar", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="row">
+                            <div class="input-field col s12 form">
+                                @Html.LabelFor(m => m.SurName, new { @for = "txtSurName" })
+                                @Html.TextBoxFor(m => m.SurName, new { @class = "validate data-required", id = "txtSurName" })
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 form">
+                                @Html.LabelFor(m => m.Name, new { @for = "txtName" })
+                                @Html.TextBoxFor(m => m.Name, new { @class = "validate data-required", id = "txtName" })
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 form">
+                                @Html.LabelFor(m => m.Emailaddress, new { @for = "txtEmailaddress" })
+                                @Html.TextBoxFor(m => m.Emailaddress, new { @class = "validate data-required", id = "txtEmailaddress" })
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 form">
+                                @Html.LabelFor(m => m.Phone, new { @for = "txtPhone" })
+                                @Html.TextBoxFor(m => m.Phone, new { @class = "validate data-required", id = "txtPhone" })
+
+
+                            </div>
+                        </div>
+                                <div class="row">
+                                    <div class="input-field col s12 form">
+                                        @Html.LabelFor(m => m.CarBrand, new { @for = "txtCarBrand" })
+                                        @Html.TextBoxFor(m => m.CarBrand, new { @class = "validate data-required", id = "txtCarBrand" })
+
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12 form">
+                                        @Html.LabelFor(m => m.CarModel, new { @for = "txtCarModel" })
+                                        @Html.TextBoxFor(m => m.CarModel, new { @class = "validate data-required", id = "txtCarModel" })
+
+
+                                    </div>
+                                </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            @Html.LabelFor(m => m.CarDescription, new { @for = "txtCarDescription" })
+                                            @Html.TextBoxFor(m => m.CarDescription, new { @class = "validate data-required", id = "txtCarDescription" })
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            @Html.LabelFor(m => m.CarKilometers, new { @for = "txtCarKilometers" })
+                                            @Html.TextBoxFor(m => m.CarKilometers, new { @class = "validate data-required", id = "txtCarKilometers" })
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            @Html.LabelFor(m => m.CarDamage, new { @for = "txtCarDamage" })
+                                            @Html.TextBoxFor(m => m.CarDamage, new { @class = "validate data-required", id = "txtCarDamage" })
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            @Html.LabelFor(m => m.YearOfConstruction, new { @for = "txtYearOfConstruction" })
+                                            @Html.TextBoxFor(m => m.YearOfConstruction, new { @class = "validate data-required", id = "txtYearOfConstruction" })
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            @Html.LabelFor(m => m.Color, new { @for = "txtColor" })
+                                            @Html.TextBoxFor(m => m.Color, new { @class = "validate data-required", id = "txtColor" })
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            @Html.EnumDropDownListFor(model => model.fuelChoice, "Kies een brandstof... ")
+                                            <label>Brandstof</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            @Html.EnumDropDownListFor(model => model.transmissionChoice, "Kies een transmissie... ")
+                                            <label>Transmissie</label>
+                                        </div>
+                                    </div>
+                                    
+                                   
+                                    
+                                   
+                                   
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            @Html.LabelFor(m => m.firstRegistration, new { @for = "txtFirstRegistration" })
+                                            @Html.TextBoxFor(m => m.firstRegistration, new { @class = "datepicker", id = "txtFirstRegistration", })
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            @Html.LabelFor(m => m.Comment, new { @for = "txtComment" })
+                                            @Html.TextAreaFor(m => m.Comment, new { @class = "materialize-textarea", id = "txtComment", })
+
+
+                                        </div>
+                                    </div>
+
+
+
+
+                        <div class="row">
+
+                            <div class="input-field col s12 form">
+                                <div class="field">
+                                    <div class="file-field input-field">
+                                        <div class="btn">
+                                            <span>Afbeeldingen</span>
+                                            <input multiple type="file" name="files" id="files" accept="image/*">
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input class="file-path validate" type="text">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            <input type="submit" value="Opsturen" class="btn btn-default" />
+
+
+                                        </div>
+                                    </div>
+
+
+
+
+                    }
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+</div>

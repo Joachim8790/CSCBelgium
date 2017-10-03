@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right",@style="width:100%;" }))
+    {
+    @Html.AntiForgeryToken()
+
+        <li><b>@Html.ActionLink("Administratorpaneel", "Index", "Configuratiepaneel")</b></li>
+
+
+    }
+}
+else
+{
+
+
+        <li><b>@Html.ActionLink("Administratorpaneel", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</b></li>
+    
+}

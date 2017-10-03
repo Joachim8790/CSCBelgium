@@ -1,0 +1,512 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CSCbelgiumDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblBrands">
+          <Key>
+            <PropertyRef Name="BrandID" />
+          </Key>
+          <Property Name="BrandID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrandName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCars">
+          <Key>
+            <PropertyRef Name="CarID" />
+          </Key>
+          <Property Name="CarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrandID" Type="int" Nullable="false" />
+          <Property Name="CarModel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CarPrice" Type="float" Nullable="false" />
+          <Property Name="CarDescription" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="CarEquipment" Type="ntext" Nullable="false" />
+          <Property Name="ColorID" Type="int" Nullable="false" />
+          <Property Name="CarYearOfConstruction" Type="int" Nullable="false" />
+          <Property Name="CarKilometers" Type="int" Nullable="false" />
+          <Property Name="Sold" Type="tinyint" Nullable="false" />
+          <Property Name="CarFuel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstRegistration" Type="date" Nullable="false" />
+          <Property Name="PowerKW" Type="int" Nullable="false" />
+          <Property Name="PowerPK" Type="int" Nullable="false" />
+          <Property Name="CylinderCapacity" Type="int" Nullable="false" />
+          <Property Name="Transmission" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="C02Emissions" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Createdate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblColors">
+          <Key>
+            <PropertyRef Name="ColorID" />
+          </Key>
+          <Property Name="ColorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ColorName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblImages">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CarID" Type="int" Nullable="false" />
+          <Property Name="Image" Type="image" Nullable="false" />
+          <Property Name="ImageOrder" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPosts">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PostTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PostDescription" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="PostImage" Type="image" Nullable="false" />
+          <Property Name="PostDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblRimBrands">
+          <Key>
+            <PropertyRef Name="RimBrandID" />
+          </Key>
+          <Property Name="RimBrandID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RimBrandName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblRimImages">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RimID" Type="int" Nullable="false" />
+          <Property Name="Image" Type="image" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblRims">
+          <Key>
+            <PropertyRef Name="RimID" />
+          </Key>
+          <Property Name="RimID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RimBrandID" Type="int" Nullable="false" />
+          <Property Name="RimModel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RimPrice" Type="int" Nullable="false" />
+          <Property Name="Sold" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSlides">
+          <Key>
+            <PropertyRef Name="SlideID" />
+          </Key>
+          <Property Name="SlideID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SlideImage" Type="image" Nullable="false" />
+          <Property Name="CaptionAlignment" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CaptionText" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblCars_tblBrands">
+          <End Role="tblBrands" Type="Self.tblBrands" Multiplicity="1" />
+          <End Role="tblCars" Type="Self.tblCars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBrands">
+              <PropertyRef Name="BrandID" />
+            </Principal>
+            <Dependent Role="tblCars">
+              <PropertyRef Name="BrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCars_tblColor">
+          <End Role="tblColors" Type="Self.tblColors" Multiplicity="1" />
+          <End Role="tblCars" Type="Self.tblCars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblColors">
+              <PropertyRef Name="ColorID" />
+            </Principal>
+            <Dependent Role="tblCars">
+              <PropertyRef Name="ColorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblImages_tblCars">
+          <End Role="tblCars" Type="Self.tblCars" Multiplicity="1" />
+          <End Role="tblImages" Type="Self.tblImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCars">
+              <PropertyRef Name="CarID" />
+            </Principal>
+            <Dependent Role="tblImages">
+              <PropertyRef Name="CarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRimBrands_tblRims">
+          <End Role="tblRimBrands" Type="Self.tblRimBrands" Multiplicity="1" />
+          <End Role="tblRims" Type="Self.tblRims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRimBrands">
+              <PropertyRef Name="RimBrandID" />
+            </Principal>
+            <Dependent Role="tblRims">
+              <PropertyRef Name="RimBrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRims_tblRimImages">
+          <End Role="tblRims" Type="Self.tblRims" Multiplicity="1" />
+          <End Role="tblRimImages" Type="Self.tblRimImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRims">
+              <PropertyRef Name="RimID" />
+            </Principal>
+            <Dependent Role="tblRimImages">
+              <PropertyRef Name="RimID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CSCbelgiumDatabaseModelStoreContainer">
+          <EntitySet Name="tblBrands" EntityType="Self.tblBrands" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCars" EntityType="Self.tblCars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblColors" EntityType="Self.tblColors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblImages" EntityType="Self.tblImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPosts" EntityType="Self.tblPosts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRimBrands" EntityType="Self.tblRimBrands" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRimImages" EntityType="Self.tblRimImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRims" EntityType="Self.tblRims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSlides" EntityType="Self.tblSlides" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblCars_tblBrands" Association="Self.FK_tblCars_tblBrands">
+            <End Role="tblBrands" EntitySet="tblBrands" />
+            <End Role="tblCars" EntitySet="tblCars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCars_tblColor" Association="Self.FK_tblCars_tblColor">
+            <End Role="tblColors" EntitySet="tblColors" />
+            <End Role="tblCars" EntitySet="tblCars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblImages_tblCars" Association="Self.FK_tblImages_tblCars">
+            <End Role="tblCars" EntitySet="tblCars" />
+            <End Role="tblImages" EntitySet="tblImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRimBrands_tblRims" Association="Self.FK_tblRimBrands_tblRims">
+            <End Role="tblRimBrands" EntitySet="tblRimBrands" />
+            <End Role="tblRims" EntitySet="tblRims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRims_tblRimImages" Association="Self.FK_tblRims_tblRimImages">
+            <End Role="tblRims" EntitySet="tblRims" />
+            <End Role="tblRimImages" EntitySet="tblRimImages" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CSCbelgiumDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CSCbelgiumDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblBrands" EntityType="CSCbelgiumDatabaseModel.tblBrands" />
+          <EntitySet Name="tblColors" EntityType="CSCbelgiumDatabaseModel.tblColors" />
+          <EntitySet Name="tblImages" EntityType="CSCbelgiumDatabaseModel.tblImages" />
+          <EntitySet Name="tblPosts" EntityType="CSCbelgiumDatabaseModel.tblPosts" />
+          <EntitySet Name="tblCars" EntityType="CSCbelgiumDatabaseModel.tblCars" />
+          <AssociationSet Name="FK_tblCars_tblBrands" Association="CSCbelgiumDatabaseModel.FK_tblCars_tblBrands">
+            <End Role="tblBrands" EntitySet="tblBrands" />
+            <End Role="tblCars" EntitySet="tblCars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCars_tblColor" Association="CSCbelgiumDatabaseModel.FK_tblCars_tblColor">
+            <End Role="tblColors" EntitySet="tblColors" />
+            <End Role="tblCars" EntitySet="tblCars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblImages_tblCars" Association="CSCbelgiumDatabaseModel.FK_tblImages_tblCars">
+            <End Role="tblCars" EntitySet="tblCars" />
+            <End Role="tblImages" EntitySet="tblImages" />
+          </AssociationSet>
+          <EntitySet Name="tblSlides" EntityType="CSCbelgiumDatabaseModel.tblSlides" />
+          <EntitySet Name="tblRimImages" EntityType="CSCbelgiumDatabaseModel.tblRimImages" />
+          <EntitySet Name="tblRims" EntityType="CSCbelgiumDatabaseModel.tblRims" />
+          <AssociationSet Name="FK_tblRims_tblRimImages" Association="CSCbelgiumDatabaseModel.FK_tblRims_tblRimImages">
+            <End Role="tblRims" EntitySet="tblRims" />
+            <End Role="tblRimImages" EntitySet="tblRimImages" />
+          </AssociationSet>
+          <EntitySet Name="tblRimBrands" EntityType="CSCbelgiumDatabaseModel.tblRimBrands" />
+          <AssociationSet Name="FK_tblRimBrands_tblRims" Association="CSCbelgiumDatabaseModel.FK_tblRimBrands_tblRims">
+            <End Role="tblRimBrands" EntitySet="tblRimBrands" />
+            <End Role="tblRims" EntitySet="tblRims" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblBrands">
+          <Key>
+            <PropertyRef Name="BrandID" />
+          </Key>
+          <Property Name="BrandID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrandName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblCars" Relationship="CSCbelgiumDatabaseModel.FK_tblCars_tblBrands" FromRole="tblBrands" ToRole="tblCars" />
+        </EntityType>
+        <EntityType Name="tblColors">
+          <Key>
+            <PropertyRef Name="ColorID" />
+          </Key>
+          <Property Name="ColorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ColorName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblCars" Relationship="CSCbelgiumDatabaseModel.FK_tblCars_tblColor" FromRole="tblColors" ToRole="tblCars" />
+        </EntityType>
+        <EntityType Name="tblImages">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarID" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImageOrder" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblCars" Relationship="CSCbelgiumDatabaseModel.FK_tblImages_tblCars" FromRole="tblImages" ToRole="tblCars" />
+        </EntityType>
+        <EntityType Name="tblPosts">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostDescription" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PostImage" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="PostDate" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="tblCars">
+          <Key>
+            <PropertyRef Name="CarID" />
+          </Key>
+          <Property Name="CarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrandID" Type="Int32" Nullable="false" />
+          <Property Name="CarModel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CarPrice" Type="Double" Nullable="false" />
+          <Property Name="CarDescription" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CarEquipment" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ColorID" Type="Int32" Nullable="false" />
+          <Property Name="CarYearOfConstruction" Type="Int32" Nullable="false" />
+          <Property Name="CarKilometers" Type="Int32" Nullable="false" />
+          <Property Name="Sold" Type="Byte" Nullable="false" />
+          <Property Name="CarFuel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstRegistration" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PowerKW" Type="Int32" Nullable="false" />
+          <Property Name="PowerPK" Type="Int32" Nullable="false" />
+          <Property Name="CylinderCapacity" Type="Int32" Nullable="false" />
+          <Property Name="Transmission" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="C02Emissions" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblBrands" Relationship="CSCbelgiumDatabaseModel.FK_tblCars_tblBrands" FromRole="tblCars" ToRole="tblBrands" />
+          <NavigationProperty Name="tblColors" Relationship="CSCbelgiumDatabaseModel.FK_tblCars_tblColor" FromRole="tblCars" ToRole="tblColors" />
+          <NavigationProperty Name="tblImages" Relationship="CSCbelgiumDatabaseModel.FK_tblImages_tblCars" FromRole="tblCars" ToRole="tblImages" />
+          <Property Name="Createdate" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <Association Name="FK_tblCars_tblBrands">
+          <End Type="CSCbelgiumDatabaseModel.tblBrands" Role="tblBrands" Multiplicity="1" />
+          <End Type="CSCbelgiumDatabaseModel.tblCars" Role="tblCars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBrands">
+              <PropertyRef Name="BrandID" />
+            </Principal>
+            <Dependent Role="tblCars">
+              <PropertyRef Name="BrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCars_tblColor">
+          <End Type="CSCbelgiumDatabaseModel.tblColors" Role="tblColors" Multiplicity="1" />
+          <End Type="CSCbelgiumDatabaseModel.tblCars" Role="tblCars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblColors">
+              <PropertyRef Name="ColorID" />
+            </Principal>
+            <Dependent Role="tblCars">
+              <PropertyRef Name="ColorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblImages_tblCars">
+          <End Type="CSCbelgiumDatabaseModel.tblCars" Role="tblCars" Multiplicity="1" />
+          <End Type="CSCbelgiumDatabaseModel.tblImages" Role="tblImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCars">
+              <PropertyRef Name="CarID" />
+            </Principal>
+            <Dependent Role="tblImages">
+              <PropertyRef Name="CarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblSlides">
+          <Key>
+            <PropertyRef Name="SlideID" />
+          </Key>
+          <Property Name="SlideID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SlideImage" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="CaptionAlignment" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CaptionText" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblRimImages">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RimID" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="tblRims" Relationship="CSCbelgiumDatabaseModel.FK_tblRims_tblRimImages" FromRole="tblRimImages" ToRole="tblRims" />
+        </EntityType>
+        <EntityType Name="tblRims">
+          <Key>
+            <PropertyRef Name="RimID" />
+          </Key>
+          <Property Name="RimID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RimBrandID" Type="Int32" Nullable="false" />
+          <Property Name="RimModel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RimPrice" Type="Int32" Nullable="false" />
+          <Property Name="Sold" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="tblRimImages" Relationship="CSCbelgiumDatabaseModel.FK_tblRims_tblRimImages" FromRole="tblRims" ToRole="tblRimImages" />
+          <NavigationProperty Name="tblRimBrands" Relationship="CSCbelgiumDatabaseModel.FK_tblRimBrands_tblRims" FromRole="tblRims" ToRole="tblRimBrands" />
+        </EntityType>
+        <Association Name="FK_tblRims_tblRimImages">
+          <End Type="CSCbelgiumDatabaseModel.tblRims" Role="tblRims" Multiplicity="1" />
+          <End Type="CSCbelgiumDatabaseModel.tblRimImages" Role="tblRimImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRims">
+              <PropertyRef Name="RimID" />
+            </Principal>
+            <Dependent Role="tblRimImages">
+              <PropertyRef Name="RimID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblRimBrands">
+          <Key>
+            <PropertyRef Name="RimBrandID" />
+          </Key>
+          <Property Name="RimBrandID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RimBrandName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblRims" Relationship="CSCbelgiumDatabaseModel.FK_tblRimBrands_tblRims" FromRole="tblRimBrands" ToRole="tblRims" />
+        </EntityType>
+        <Association Name="FK_tblRimBrands_tblRims">
+          <End Type="CSCbelgiumDatabaseModel.tblRimBrands" Role="tblRimBrands" Multiplicity="1" />
+          <End Type="CSCbelgiumDatabaseModel.tblRims" Role="tblRims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRimBrands">
+              <PropertyRef Name="RimBrandID" />
+            </Principal>
+            <Dependent Role="tblRims">
+              <PropertyRef Name="RimBrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CSCbelgiumDatabaseModelStoreContainer" CdmEntityContainer="CSCbelgiumDatabaseEntities">
+          <EntitySetMapping Name="tblBrands">
+            <EntityTypeMapping TypeName="CSCbelgiumDatabaseModel.tblBrands">
+              <MappingFragment StoreEntitySet="tblBrands">
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblColors">
+            <EntityTypeMapping TypeName="CSCbelgiumDatabaseModel.tblColors">
+              <MappingFragment StoreEntitySet="tblColors">
+                <ScalarProperty Name="ColorName" ColumnName="ColorName" />
+                <ScalarProperty Name="ColorID" ColumnName="ColorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblImages">
+            <EntityTypeMapping TypeName="CSCbelgiumDatabaseModel.tblImages">
+              <MappingFragment StoreEntitySet="tblImages">
+                <ScalarProperty Name="ImageOrder" ColumnName="ImageOrder" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="CarID" ColumnName="CarID" />
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPosts">
+            <EntityTypeMapping TypeName="CSCbelgiumDatabaseModel.tblPosts">
+              <MappingFragment StoreEntitySet="tblPosts">
+                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+                <ScalarProperty Name="PostImage" ColumnName="PostImage" />
+                <ScalarProperty Name="PostDescription" ColumnName="PostDescription" />
+                <ScalarProperty Name="PostTitle" ColumnName="PostTitle" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCars">
+            <EntityTypeMapping TypeName="CSCbelgiumDatabaseModel.tblCars">
+              <MappingFragment StoreEntitySet="tblCars">
+                <ScalarProperty Name="Createdate" ColumnName="Createdate" />
+                <ScalarProperty Name="C02Emissions" ColumnName="C02Emissions" />
+                <ScalarProperty Name="Transmission" ColumnName="Transmission" />
+                <ScalarProperty Name="CylinderCapacity" ColumnName="CylinderCapacity" />
+                <ScalarProperty Name="PowerPK" ColumnName="PowerPK" />
+                <ScalarProperty Name="PowerKW" ColumnName="PowerKW" />
+                <ScalarProperty Name="FirstRegistration" ColumnName="FirstRegistration" />
+                <ScalarProperty Name="CarFuel" ColumnName="CarFuel" />
+                <ScalarProperty Name="Sold" ColumnName="Sold" />
+                <ScalarProperty Name="CarKilometers" ColumnName="CarKilometers" />
+                <ScalarProperty Name="CarYearOfConstruction" ColumnName="CarYearOfConstruction" />
+                <ScalarProperty Name="ColorID" ColumnName="ColorID" />
+                <ScalarProperty Name="CarEquipment" ColumnName="CarEquipment" />
+                <ScalarProperty Name="CarDescription" ColumnName="CarDescription" />
+                <ScalarProperty Name="CarPrice" ColumnName="CarPrice" />
+                <ScalarProperty Name="CarModel" ColumnName="CarModel" />
+                <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+                <ScalarProperty Name="CarID" ColumnName="CarID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSlides">
+            <EntityTypeMapping TypeName="CSCbelgiumDatabaseModel.tblSlides">
+              <MappingFragment StoreEntitySet="tblSlides">
+                <ScalarProperty Name="CaptionText" ColumnName="CaptionText" />
+                <ScalarProperty Name="CaptionAlignment" ColumnName="CaptionAlignment" />
+                <ScalarProperty Name="SlideImage" ColumnName="SlideImage" />
+                <ScalarProperty Name="SlideID" ColumnName="SlideID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRimImages">
+            <EntityTypeMapping TypeName="CSCbelgiumDatabaseModel.tblRimImages">
+              <MappingFragment StoreEntitySet="tblRimImages">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="RimID" ColumnName="RimID" />
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRims">
+            <EntityTypeMapping TypeName="CSCbelgiumDatabaseModel.tblRims">
+              <MappingFragment StoreEntitySet="tblRims">
+                <ScalarProperty Name="Sold" ColumnName="Sold" />
+                <ScalarProperty Name="RimPrice" ColumnName="RimPrice" />
+                <ScalarProperty Name="RimModel" ColumnName="RimModel" />
+                <ScalarProperty Name="RimBrandID" ColumnName="RimBrandID" />
+                <ScalarProperty Name="RimID" ColumnName="RimID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRimBrands">
+            <EntityTypeMapping TypeName="CSCbelgiumDatabaseModel.tblRimBrands">
+              <MappingFragment StoreEntitySet="tblRimBrands">
+                <ScalarProperty Name="RimBrandName" ColumnName="RimBrandName" />
+                <ScalarProperty Name="RimBrandID" ColumnName="RimBrandID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

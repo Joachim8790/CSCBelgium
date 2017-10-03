@@ -1,0 +1,89 @@
+﻿@model CSCBelgium.ViewModels.AddSliderImageViewModel
+
+@{
+    ViewBag.Title = "addSliderImage";
+    Layout = "~/Views/Shared/_LayoutConfiguratiepaneel.cshtml";
+}
+<nav style="height:90px;">
+    <div class="nav-wrapper">
+        <a style="float:right;" href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="left"></ul>
+
+    </div>
+</nav>
+<div class="main">
+    <h4>Slide toevoegen</h4>
+
+    <div class="row">
+        <div class="col-md-12">
+            <section id="loginForm">
+                <div class="contactform">
+                    @using (Html.BeginForm("addSliderImage", "Configuratiepaneel", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="row">
+                            <div class="input-field col s12 form">
+                                @Html.LabelFor(m => m.newSlide.CaptionText, new { @for = "txtCaptionText" })
+                                @Html.TextBoxFor(m => m.newSlide.CaptionText, new { @class = "validate", id = "txtCaptionText" })
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 form">
+                                @Html.EnumDropDownListFor(m => m.alignment)
+                                <label>Uitlijning</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6 form">
+                               <p>Afbeeldingen zijn het best als hun breedte meer dan dubbel zo groot is als hun hoogte</p>
+                            </div>
+                            <div class="input-field col s6 form">
+                               <img src="~/Content/Images/banner1.jpg" width="250" height="80" />
+                            </div>
+                        </div>
+                            <div class="row">
+
+                                <div class="input-field col s12 form">
+                                    <div class="field">
+                                        <div class="file-field input-field">
+                                            <div class="btn">
+                                                <span>Afbeelding</span>
+                                                <input type="file" name="txtAfbeelding" id="txtAfbeelding" accept="image/*">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="input-field col s12 form">
+                                    <input type="submit" value="Aanmaken" class="btn btn-default" />
+
+
+                                </div>
+                            </div>
+
+
+
+                    }
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+</div>
+
+
+

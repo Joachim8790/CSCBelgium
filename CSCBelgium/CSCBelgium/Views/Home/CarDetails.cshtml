@@ -1,0 +1,183 @@
+﻿@model CSCBelgium.ViewModels.CarDetailsViewModel
+
+@{
+    ViewBag.Title = "CarDetails";
+    tblBrandsService bservice = new tblBrandsService();
+    tblColorsService colservice = new tblColorsService();
+    String[] equipmentlines = Model.car.CarEquipment.Split(',');
+}
+@using CSCBelgium.Service;
+<style>
+    @@font-face {
+    font-family: akrobat;
+    src: url(/fonts/Akrobat-ExtraBold.otf);
+}
+    h1{
+        font-size:1.3rem;
+        margin:0;
+        padding: 10px 0;
+    }
+    p {
+         font-size:1.1rem;
+         margin:0;
+        padding:10px 0;
+    }
+    .collapsible-header{
+        font-family:akrobat;
+        font-size:1.3rem;
+    }
+
+</style>
+<div class="main" style="margin-right:0;">
+<div class="form-horizontal">
+
+    <h4>@bservice.getBrand(Model.car.BrandID).BrandName @Model.car.CarModel</h4>
+    <div class="fotorama" data-nav="thumbs" data-width="100%" data-ratio="800/600" data-maxwidth="1000">
+        @for (int i = 0; i < Model.images.Count(); i++)
+        {
+            <img alt="" src="data:image;base64,@System.Convert.ToBase64String(Model.images.ElementAt(i).Image)" />
+        }
+    </div>
+    
+</div>
+</div>
+<ul class="collapsible" data-collapsible="expandable" >
+    <li>
+        <div class="collapsible-header active"><i class="material-icons">info</i>Algemene informatie</div>
+        <div class="collapsible-body">
+            <div class="row">
+                <div class="generaldata">
+                    <div class="col-lg-6 col-md-6">
+                        <h1>Merk</h1>
+                        <p>@bservice.getBrand(Model.car.BrandID).BrandName</p>
+                        <h1>Model</h1>
+                        <p>@Model.car.CarModel</p>
+
+                        <h1>Beschrijving</h1>
+                        <p>@Model.car.CarDescription</p>
+
+                        <h1>Prijs</h1>
+                        <p>@Model.car.CarPrice.ToString("€#,##0")</p>
+
+                        <h1>Bouwjaar</h1>
+                        <p>@Model.car.CarYearOfConstruction</p>
+
+                        <h1>Kilometerstand</h1>
+                        <p>@Model.car.CarKilometers.ToString("#,##0 km")</p>
+
+                        <h1>Brandstof</h1>
+                        <p>@Model.car.CarFuel.ToString()</p>
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <h1>Eerste inschrijving</h1>
+                        @Model.car.FirstRegistration.ToLongDateString()
+                        <h1>Kleur</h1>
+                        @colservice.getColor(Model.car.ColorID).ColorName
+                        <h1>Vermogen PK</h1>
+                        @Model.car.PowerPK
+                        <h1>Vermogen kW</h1>
+                        @Model.car.PowerKW
+                        <h1>Cilinderinhoud</h1>
+                        @Model.car.CylinderCapacity
+                        <h1>C02-uitstoot</h1>
+                        @Model.car.C02Emissions
+                        <h1>Transmissie</h1>
+                        @Model.car.Transmission.ToString()
+
+
+
+                    </div>
+                </div>
+            </div>
+            </div>
+    </li>
+    <li>
+        <div class="collapsible-header"><i class="material-icons">directions_car</i>Uitrusting</div>
+        <div class="collapsible-body">
+            <div class="equipment">
+                <ul>
+                    @for (int i = 0; i < equipmentlines.Count(); i++)
+                    {
+                        <li style="width: 100%;height: auto;">@equipmentlines[i]</li>
+                    }
+                </ul>
+
+            </div>
+          
+
+        </div>
+    </li>
+    <li>
+        <div class="collapsible-header"><i class="material-icons">assignment</i>Een afspraak maken voor dit voertuig</div>
+        <div class="collapsible-body">
+            <div class="main" style="padding:0;margin:0;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <section id="loginForm">
+                            <div class="contactform">
+                                @using (Html.BeginForm("CarDetails", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <hr />
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            <i class="material-icons prefix">account_circle</i>
+                                            @Html.LabelFor(m => m.name, new { @for = "txtname" })
+                                            @Html.TextBoxFor(m => m.name, new { @class = "validate", id = "txtname" })
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            <i class="material-icons prefix">email</i>
+                                            @Html.LabelFor(m => m.emailadres, new { @for = "txtemailadres"})
+                                            @Html.TextBoxFor(m => m.emailadres, new { @class = "validate",@type="email", id = "txtemailadres" })
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            <i class="material-icons prefix">message</i>
+                                            @Html.LabelFor(m => m.message, new { @for = "txtmessage" })
+                                            @Html.TextAreaFor(m => m.message, new { @class = "materialize-textarea", id = "txtmessage" })
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="input-field col s12 form">
+                                            <input type="submit" value="Verzenden" class="btn btn-default" />
+                                            @Html.HiddenFor(m => m.carbrand)
+                                            @Html.HiddenFor(m => m.carmodel)
+
+                                        </div>
+                                    </div>
+
+
+
+                                }
+                            </div>
+                        </section>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </li>
+</ul>

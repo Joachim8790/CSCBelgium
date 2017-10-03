@@ -1,0 +1,264 @@
+﻿@model CSCBelgium.ViewModels.CarsViewModel
+@{
+    ViewBag.Title = "Cars";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    tblBrandsService bservice = new tblBrandsService();
+    tblCarsService service = new tblCarsService();
+    Model.brandChoice = bservice.getBrands();
+}
+@using CSCBelgium.Service
+<nav class="nav-extended">
+
+    <div class="nav-wrapper" style="line-height:70px;">
+        <a href="#" class="brand-logo"><img src="~/Content/Images/logo.png" width="200" height="74" style="margin-bottom:10px;" /></a>
+        <a href="#" style="height:0;line-height:90px;" data-activates="mobile-demo" class="button-collapse"><i class="material-icons" style="line-height:0;">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><b><a href="@Url.Action("Index","Home")">home</a></b></li>
+            <li><b><a href="@Url.Action("Cars","Home")">wagens <span class="new badge">@Model.CarsInStock in stock</span></a></b></li>
+            <li><b><a href="@Url.Action("SellCar","Home")">verkoop uw wagen</a></b></li>
+            <li><b><a href="@Url.Action("Rims","Home")">velgen</a></b></li>
+            <li><b><a href="@Url.Action("Services","Home")">services</a></b></li>
+            <li><b><a href="@Url.Action("Contact","Home")">contact</a></b></li>
+
+        </ul>
+
+
+
+        <ul class="side-nav" id="mobile-demo">
+            <li><b><a href="@Url.Action("Index","Home")">home</a></b></li>
+            <li><b><a href="@Url.Action("Cars","Home")">wagens <span class="new badge">@Model.CarsInStock in stock</span></a></b></li>
+            <li><b><a href="@Url.Action("SellCar","Home")">verkoop uw wagen</a></b></li>
+            <li><b><a href="@Url.Action("Rims","Home")">velgen</a></b></li>
+            <li><b><a href="@Url.Action("Services","Home")">services</a></b></li>
+            <li><b><a href="@Url.Action("Contact","Home")">contact</a></b></li>
+
+        </ul>
+
+    </div>
+    <div class="nav-content">
+        <ul class="collapsible" style="border:1px solid #000;" data-collapsible="accordion">
+            <li>
+                <div class="collapsible-header" style="width:100vw;border:1px solid #000;margin-left:-1px;background-color:#000;"><div margin="20px"><i class="material-icons">add</i><i>Filter</i></div></div>
+                <div class="collapsible-body" style="background-color:#000;margin-left:-1px;">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <section id="loginForm">
+                                <div class="customform">
+                                    @using (Html.BeginForm("Cars", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", @id = "filterForm" }))
+                                    {
+                                        if (Model.cars.Count() > 0)
+                                        {
+                                            @Html.AntiForgeryToken()
+
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="input-field col s12">
+                                                        <h6 class="customlabel">Merk</h6>
+                                                        @Html.DropDownListFor(model => model.selectedBrandId, new SelectList(Model.brandChoice, "BrandID", "BrandName"), "Kies een merk... ")
+
+                                                    </div>
+
+
+                                                    <div class="input-field col s12 form">
+                                                        <h6 class="customlabel">Kleur</h6>
+                                                        @Html.DropDownListFor(model => model.selectedColorId, new SelectList(Model.colorChoice, "ColorID", "ColorName"), "Kies een kleur... ")
+
+                                                    </div>
+
+
+                                                    <div class="input-field col s12 form">
+                                                        <h6 class="customlabel">Brandstof</h6>
+                                                        @Html.EnumDropDownListFor(model => model.fuelChoice, "Kies een brandstof... ")
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                    <div class="input-field col s12 form">
+                                                        <h6 class="customlabel">Transmissie</h6>
+                                                        @Html.EnumDropDownListFor(model => model.transmissionChoice, "Kies een transmissie... ")
+
+                                                    </div>
+
+                                                    <div class="sliders">
+                                                        <div class="input-field col s12 form">
+                                                            <h6 class="customlabel">Prijs per 1000</h6>
+                                                            <div id="price-slider"></div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="sliders">
+                                                        <div class="input-field col s12 form">
+                                                            <h6 class="customlabel">Kilometerstand per 1000</h6>
+                                                            <div id="km-slider"></div>
+                                                        </div>
+
+                                                    </div>
+                                                    <input type="hidden" value="" id="minKM" name="minKM" />
+                                                    <input type="hidden" value="" id="maxKM" name="maxKM" />
+                                                    <input type="hidden" value="" id="minPrice" name="minPrice" />
+                                                    <input type="hidden" value="" id="maxPrice" name="maxPrice" />
+                                                    <div class="input-field col s12 form">
+                                                        <button class="btn waves-effect waves-light" style="margin-top:35px;">
+                                                            Filteren
+                                                            <i class="material-icons right">send</i>
+                                                        </button>
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+                                            @Html.HiddenFor(model => model.colorChoice)
+                                            @Html.HiddenFor(model => model.fuelChoice)
+                                            @Html.HiddenFor(model => model.transmissionChoice)
+                                        }
+
+
+                                    }
+
+                                </div>
+                            </section>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</nav>
+<br />
+
+
+
+
+<div class="main" style="padding:0;margin:0;">
+    <br />
+    <h4>Wagens</h4>
+    <div class="row" id="cars">
+
+        @foreach (var car in Model.cars)
+            {
+            <div class="col-lg-3 col-md-4 col-sm-6" style="padding:10px">
+                <div class="card car">
+                   @if (service.isSold(car))
+                   {
+                    <a href="#">
+                        <div class="card-image waves-effect waves-block waves-light" style="height:250px;width:100%;background:url(data:image;base64,@System.Convert.ToBase64String(Model.images.Where(a => a.CarID == car.CarID).FirstOrDefault().Image)) no-repeat center center ;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+                            @*<img alt="" class="activator" src="data:image;base64,@System.Convert.ToBase64String(post.PostImage)" />*@
+                        </div>
+                    </a>
+                   }
+                   else
+                   {
+                    <a href="@Url.Action("CarDetails","Home",new { carID = car.CarID })">
+                        <div class="card-image waves-effect waves-block waves-light" style="height:250px;width:100%;background:url(data:image;base64,@System.Convert.ToBase64String(Model.images.Where(a => a.CarID == car.CarID).FirstOrDefault().Image)) no-repeat center center ;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+                            @*<img alt="" class="activator" src="data:image;base64,@System.Convert.ToBase64String(post.PostImage)" />*@
+                        </div>
+                    </a>
+                   }
+
+                    <div class="card-content">
+                        @if (service.isSold(car))
+                        {
+                            <span style="font-size: 1.1rem;" class="card-title activator grey-text text-darken-4">@car.tblBrands.BrandName @car.CarModel<br /><b style="color:rgb(255,51,51);">Verkocht</b></span>
+                        }
+                        else
+                        {
+                            <span style="font-size: 1.1rem;" class="card-title activator grey-text text-darken-4">@car.tblBrands.BrandName @car.CarModel<br /><b>@car.CarPrice.ToString("€#,##0") - @car.CarKilometers.ToString("#,##0 km")  </b></span>
+                        }
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        }
+
+    </div>
+
+
+
+
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+    var sliderprice = document.getElementById('price-slider');
+    noUiSlider.create(sliderprice, {
+        start: [@Convert.ToInt32(Math.Floor(Model.minPrice/1000)), @Convert.ToInt32(Math.Ceiling(Model.maxPrice/1000))],
+        connect: true,
+        step: 1,
+        orientation: 'horizontal', // 'horizontal' or 'vertical'
+        range: {
+            'min': 0,
+            'max': @Convert.ToInt32(Math.Ceiling((Model.maxPrice/1000)+10))},
+        format: {
+            from: function(value) {
+                return parseInt(value);
+            },
+            to: function(value) {
+                return parseInt(value);
+            }
+        }
+
+    });
+    var sliderkm = document.getElementById('km-slider');
+    noUiSlider.create(sliderkm, {
+        start: [@Convert.ToInt32(Math.Floor((double)Model.minKM/1000)), @Convert.ToInt32(Math.Ceiling((double)Model.maxKM/1000))],
+        connect: true,
+        step: 1,
+        orientation: 'horizontal', // 'horizontal' or 'vertical'
+        range: {
+            'min': 0,
+            'max': @Convert.ToInt32(Math.Ceiling((Model.maxPrice/1000)+10))},
+        format: {
+            from: function(value) {
+                return parseInt(value);
+            },
+            to: function(value) {
+                return parseInt(value);
+            }
+        }
+
+    });
+
+            $("#filterForm").submit(function(event) {
+                event.preventDefault();
+                var strSelected = "";
+                var minprice = Math.round($("#price-slider .noUi-base .noUi-origin .noUi-handle.noUi-handle-lower .noUi-tooltip span").html()*1000);
+                var maxprice = Math.round($("#price-slider .noUi-base .noUi-origin:nth-child(3) .noUi-handle.noUi-handle-upper .noUi-tooltip span").html()*1000);
+                var minkm = Math.round($("#km-slider .noUi-base .noUi-origin:nth-child(1) .noUi-handle.noUi-handle-lower .noUi-tooltip span").html()*1000);
+                var maxkm = Math.round($("#km-slider .noUi-base .noUi-origin:nth-child(3) .noUi-handle.noUi-handle-upper .noUi-tooltip span").html()*1000);
+                var data = ""
+                console.log(data);
+                $("#minKM").val(minkm);
+                $("#maxKM").val(maxkm);
+                $("#minPrice").val(minprice);
+                $("#maxPrice").val(maxprice);
+
+                $("#filterForm")[0].submit()
+
+            })
+
+
+
+
+
+
+    </script>
+}

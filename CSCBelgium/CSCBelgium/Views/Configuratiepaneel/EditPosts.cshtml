@@ -1,0 +1,90 @@
+﻿@model CSCBelgium.ViewModels.EditPostsViewModel
+@{
+    ViewBag.Title = "EditPosts";
+    Layout = "~/Views/Shared/_LayoutConfiguratiepaneel.cshtml";
+
+}
+@using CSCBelgium.Views.Configuratiepaneel.CustomCode;
+<nav style="height:90px;">
+    <div class="nav-wrapper">
+        <a style="float:right;" href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="left">
+            <li style="line-height:0;"><a href="@Url.Action("AddPost", "Configuratiepaneel")"><i  style="display:flex;align-items:center" class='material-icons tooltipped' data-position="bottom" data-delay="1" data-tooltip="Nieuwsbericht aanmaken">note_add</i></a></li>
+
+
+        </ul>
+
+    </div>
+</nav>
+<div class="main">
+
+    <div class="form-horizontal">
+
+        <h4>Nieuwsberichten</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <table id="tabel" class="table">
+                <thead>
+                    <tr>
+                        <th>bericht titel</th>
+                        <th> bericht omschrijving</th>
+                        <th> bericht foto</th>
+                        <th>bericht datum</th>
+                        <th> </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Posts.Count(); i++)
+                    {
+                        <tr id=@i>
+                            <td>@Model.Posts.Select(a => a.PostTitle).ElementAt(i).ToString()</td>
+                            <td>@Model.Posts.Select(b => b.PostDescription).ElementAt(i).ToString()</td>
+                            <td><img alt="" class="postimage" src="data:image;base64,@System.Convert.ToBase64String(Model.Posts.Select(a => a.PostImage).ElementAt(i))" width="80" height="80" /></td>
+                            <td>@Model.Posts.Select(d => d.PostDate).ElementAt(i).ToShortDateString().ToString()</td>
+                            <td>
+                                @*@Ajax.("Verwijder","VerwijderLijn", new { id = Model.Posts.ElementAt(i).PostID }, new AjaxOptions()
+                       {
+                           Confirm = "Ben je zeker dat je dit nieuwsbericht wilt verwijderen?",
+                           HttpMethod = "DELETE",
+                           OnComplete = string.Format("DeleteRijInTabel({0})", i)
+                           
+                       })*@
+                                @Ajax.RawActionLink(string.Format("<i class='material-icons tooltipped' data-position='bottom' data-delay='1' data-tooltip='Nieuwsbericht verwijderen'>close</i>"), "VerwijderLijn", null, new { id = Model.Posts.ElementAt(i).PostID }, new AjaxOptions { HttpMethod = "DELETE", Confirm = "Ben je zeker dat je dit nieuwsbericht wilt verwijderen?", OnComplete = string.Format("DeleteRijInTabel({0})", i) }, new { @class = "class" })
+
+</td>
+                        </tr>
+
+
+
+                    }
+
+                </tbody>
+            </table>
+
+
+
+
+
+
+        </div>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+            <script type="text/javascript">
+                function DeleteRijInTabel(id) {
+                    console.log(id);
+                    console.log("completed");
+                    $("#" + id).remove();
+                }
+
+            </script>
+        }
+
+
+    </div>
+</div>
+
+
+
+
