@@ -11,8 +11,7 @@ namespace CSCBelgium.DAO.Model
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class tblRims
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,9 +22,7 @@ namespace CSCBelgium.DAO.Model
     
         public int RimID { get; set; }
         public int RimBrandID { get; set; }
-        [Display(Name = "Model")]
         public string RimModel { get; set; }
-        [Display(Name = "Prijs")]
         public int RimPrice { get; set; }
         public byte Sold { get; set; }
     

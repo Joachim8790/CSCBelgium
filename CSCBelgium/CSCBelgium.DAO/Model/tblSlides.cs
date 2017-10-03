@@ -11,16 +11,12 @@ namespace CSCBelgium.DAO.Model
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class tblSlides
     {
         public int SlideID { get; set; }
-        [Display(Name = "Slider afbeelding")]
         public byte[] SlideImage { get; set; }
-        [Display(Name = "Uitlijning")]
         public string CaptionAlignment { get; set; }
-        [Display(Name = "Onderschrift")]
         public string CaptionText { get; set; }
     }
 }
