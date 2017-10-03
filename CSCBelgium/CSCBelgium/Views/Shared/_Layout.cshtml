@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 @{
     tblCarsService service = new tblCarsService();
-    int CarsInStock = service.getAllCars().Where(a => a.Sold == 0).Count();
+    int CarsInStock = service.getAllCars().Where(a => a.Sold == 0).Count()
 
 }
 @using CSCBelgium.Service
