@@ -56,6 +56,9 @@ li b a:hover{
     #circles {
        display:none;
     }
+    #nav-arrows {
+        height:0;
+    }
     .box.border-radius-left {
         margin-bottom:100px;
     }
