@@ -452,3 +452,7 @@ a{ text-decoration:none; }
 	border-left: none;
 	border-bottom: none;
 }
+.margintopbottom {
+margin:4% 0;
+
+}
