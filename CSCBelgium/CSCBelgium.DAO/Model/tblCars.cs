@@ -11,7 +11,8 @@ namespace CSCBelgium.DAO.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tblCars
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,20 +23,33 @@ namespace CSCBelgium.DAO.Model
     
         public int CarID { get; set; }
         public int BrandID { get; set; }
+        [Display(Name = "Model")]
         public string CarModel { get; set; }
+        [Display(Name = "Prijs")]
         public double CarPrice { get; set; }
+        [Display(Name = "Beschrijving")]
         public string CarDescription { get; set; }
+        [Display(Name = "Uitrusting")]
         public string CarEquipment { get; set; }
         public int ColorID { get; set; }
+        [Display(Name = "Bouwjaar")]
         public int CarYearOfConstruction { get; set; }
+        [Display(Name = "Kilometerstand")]
         public int CarKilometers { get; set; }
         public byte Sold { get; set; }
+
         public string CarFuel { get; set; }
+        [Display(Name = "Eerste inschrijving")]
         public System.DateTime FirstRegistration { get; set; }
+        [Display(Name = "Vermogen KW")]
         public int PowerKW { get; set; }
+        [Display(Name = "Vermogen PK")]
         public int PowerPK { get; set; }
+        [Display(Name = "Cilinder capaciteit")]
         public int CylinderCapacity { get; set; }
+        [Display(Name = "Transmissie")]
         public string Transmission { get; set; }
+        [Display(Name = "CO2 uitstoot")]
         public string C02Emissions { get; set; }
         public System.DateTime Createdate { get; set; }
     
