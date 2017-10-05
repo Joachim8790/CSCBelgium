@@ -5622,7 +5622,7 @@ button.btn-floating {
 }
 
 .modal {
-  display: none;
+  /*display: none;
   position: fixed;
   left: 0;
   right: 0;
@@ -5633,7 +5633,7 @@ button.btn-floating {
   margin: auto;
   overflow-y: auto;
   border-radius: 2px;
-  will-change: top, opacity;
+  will-change: top, opacity;*/
 }
 
 @media only screen and (max-width: 992px) {

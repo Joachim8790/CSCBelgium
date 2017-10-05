@@ -58,6 +58,55 @@
     window.onload = function () {
         $('select').material_select();
     };
+    var now = new Date();
+var weekday = new Array(7);
+weekday[0] = "Zondag";
+weekday[1] = "Maandag";
+weekday[2] = "Dinsdag";
+weekday[3] = "Woensdag";
+weekday[4] = "Donderdag";
+weekday[5] = "Vrijdag";
+weekday[6] = "Zaterdag";
+
+var checkTime = function() {
+  var today = weekday[now.getDay()];
+  var timeDiv = document.getElementById('timeDiv');
+  var dayOfWeek = now.getDay();
+  var hour = now.getHours();
+  var minutes = now.getMinutes();
+
+
+
+  // add 0 to one digit minutes
+  if (minutes < 10) {
+    minutes = "0" + minutes
+  };
+
+  if ((dayOfWeek == 1 || dayOfWeek == 2 || dayOfWeek == 3 ||dayOfWeek == 4 ||dayOfWeek == 5 ) && hour >= 9 && hour <= 19) {
+
+    timeDiv.innerHTML = 'Het is ' + today + ' ' + hour + ':' + minutes  + ' - we zijn open!';
+    timeDiv.className = 'open';
+  } 
+  
+  else if ((dayOfWeek == 6 ) && hour >= 10 && hour <= 17) {
+    hour = ((hour + 11) % 12 + 1);
+    timeDiv.innerHTML = 'Het is ' + today + ' ' + hour + ':' + minutes  + ' - we zijn open!';
+    timeDiv.className = 'open';
+  } 
+  
+  else {
+
+    timeDiv.innerHTML = 'Het is ' + today + ' ' + hour + ':' + minutes  + ' - we zijn gesloten!';
+    timeDiv.className = 'closed';
+  }
+};
+
+var currentDay = weekday[now.getDay()];
+var currentDayID = "#" + currentDay; //gets todays weekday and turns it into id
+$(currentDayID).toggleClass("today"); //hightlights today in the view hours modal popup
+
+setInterval(checkTime, 1000);
+checkTime();
 });
 function positionCircles()
 {

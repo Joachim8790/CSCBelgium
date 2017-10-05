@@ -245,12 +245,15 @@
     <Content Include="Content\Images\banner3.jpg" />
     <Content Include="Content\Images\banner4.jpg" />
     <Content Include="Content\Images\Contact.jpg" />
+    <Content Include="Content\Images\contactbg.jpg" />
     <Content Include="Content\Images\facebook.png" />
     <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\logocontact.png" />
     <Content Include="Content\Images\postsbg.jpg" />
     <Content Include="Content\Images\velgen.jpg" />
     <Content Include="Content\Images\verkoopuwauto.jpg" />
     <Content Include="Content\Images\welcomebg.jpg" />
+    <Content Include="Content\Images\wheel.png" />
     <Content Include="Content\materialize.css" />
     <Content Include="Content\normalize.css" />
     <Content Include="Content\nouislider.css" />
