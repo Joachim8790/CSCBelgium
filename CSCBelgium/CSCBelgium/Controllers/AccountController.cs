@@ -137,7 +137,7 @@ namespace CSCBelgium.Controllers
         //
         // GET: /Account/Register
         [Authorize]
-        [AllowAnonymous]
+
         public ActionResult Register()
         {
             return View();
@@ -146,7 +146,7 @@ namespace CSCBelgium.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+
         [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
