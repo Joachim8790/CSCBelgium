@@ -319,10 +319,10 @@ z-index:9999999;
 .white_region {
     padding: 0 0 15% 0;
     background: url(Images/postsbg.jpg) no-repeat center center;
-    -webkit-background-position: bottom;
-    -moz-background-position: bottom;
-    -o-background-position: bottom;
-    background-position: bottom;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 .page-footer h5{
     font-family:akrobat;
