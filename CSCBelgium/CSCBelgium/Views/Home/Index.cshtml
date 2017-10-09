@@ -15,7 +15,7 @@
 
                     <img src="data:image;base64,@System.Convert.ToBase64String(Model.slides.Select(a => a.SlideImage).ElementAt(i))"/> <!-- random image -->
                     <div class="caption left-align">
-                        <h3>@Model.slides.ElementAt(i).CaptionText</h3>
+                        <h3 style="font-weight:bold;color:#@Model.slides.ElementAt(i).CationColor">@Model.slides.ElementAt(i).CaptionText</h3>
                     </div>
                 </li>
             }
@@ -27,7 +27,7 @@
 
                         <img src="data:image;base64,@System.Convert.ToBase64String(Model.slides.Select(a => a.SlideImage).ElementAt(i))" /> <!-- random image -->
                         <div class="caption center-align">
-                            <h3>@Model.slides.ElementAt(i).CaptionText</h3>
+                            <h3 style="font-weight:bold;color:#@Model.slides.ElementAt(i).CationColor">@Model.slides.ElementAt(i).CaptionText</h3>
                         </div>
                     </li>
                 }
@@ -37,7 +37,7 @@
 
                         <img src="data:image;base64,@System.Convert.ToBase64String(Model.slides.Select(a => a.SlideImage).ElementAt(i))" /> <!-- random image -->
                         <div class="caption right-align">
-                            <h3>@Model.slides.ElementAt(i).CaptionText</h3>
+                            <h3 style="font-weight:bold;color:#@Model.slides.ElementAt(i).CationColor">@Model.slides.ElementAt(i).CaptionText</h3>
                         </div>
                     </li>
                 }
@@ -132,7 +132,7 @@
                         <h3 class="name">Lucas Alpay</h3>
                         <h4 class="occupation">Zaakvoerder</h4><br />
                         <h4 style="font-size:1.2rem;"><i>Lucas@csc-belgium.be</i></h4>
-
+                        <h4 style="font-size:1.2rem;"><b>+32 474 32 88 39</b></h4>
                     </div>
 
                 </div>
@@ -147,6 +147,7 @@
                         <h3 class="name">Jonas Vaernewijck</h3>
                         <h4 class="occupation">Zaakvoerder</h4><br />
                         <h4 style="font-size:1.2rem;"><i>Jonas@csc-belgium.be</i></h4>
+                        <h4 style="font-size:1.2rem;"><b>+32 474 75 09 86</b></h4>
 
                     </div>
 

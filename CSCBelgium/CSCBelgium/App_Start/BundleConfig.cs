@@ -13,7 +13,8 @@ namespace CSCBelgium
                         "~/Scripts/jquery.unobtrusive-ajax.min.js",
                         "~/Scripts/jquery-ui.unobtrusive-{version}.js",
                         "~/Scripts/Site.js",
-                        "~/Scripts/fotorama.js"));
+                        "~/Scripts/fotorama.js",
+                        "~/Scripts/jscolor.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*",

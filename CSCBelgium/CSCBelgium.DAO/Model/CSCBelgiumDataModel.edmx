@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CSCBelgiumDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CSCBelgiumDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblBrands">
           <Key>
             <PropertyRef Name="BrandID" />
@@ -94,6 +94,7 @@
           <Property Name="SlideImage" Type="image" Nullable="false" />
           <Property Name="CaptionAlignment" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CaptionText" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="CationColor" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_tblCars_tblBrands">
           <End Role="tblBrands" Type="Self.tblBrands" Multiplicity="1" />
@@ -186,8 +187,7 @@
             <End Role="tblRimImages" EntitySet="tblRimImages" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CSCBelgiumDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -290,6 +290,7 @@
           <Property Name="SlideImage" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="CaptionAlignment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CaptionText" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CationColor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_tblCars_tblBrands">
           <End Role="tblBrands" Type="Self.tblBrands" Multiplicity="1" />
@@ -480,6 +481,7 @@
           <EntitySetMapping Name="tblSlides">
             <EntityTypeMapping TypeName="CSCBelgiumDatabaseModel.tblSlides">
               <MappingFragment StoreEntitySet="tblSlides">
+                <ScalarProperty Name="CationColor" ColumnName="CationColor" />
                 <ScalarProperty Name="SlideID" ColumnName="SlideID" />
                 <ScalarProperty Name="SlideImage" ColumnName="SlideImage" />
                 <ScalarProperty Name="CaptionAlignment" ColumnName="CaptionAlignment" />

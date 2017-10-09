@@ -11,5 +11,6 @@ namespace CSCBelgium.ViewModels
     {
         public tblSlides newSlide { get; set; }
         public Uitlijning alignment { get; set; }
+        
     }
 }

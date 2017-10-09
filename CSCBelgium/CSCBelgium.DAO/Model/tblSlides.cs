@@ -18,5 +18,6 @@ namespace CSCBelgium.DAO.Model
         public byte[] SlideImage { get; set; }
         public string CaptionAlignment { get; set; }
         public string CaptionText { get; set; }
+        public string CationColor { get; set; }
     }
 }

@@ -198,10 +198,10 @@ namespace CSCBelgium.Controllers
             tblSlides slide = new tblSlides();
             if (ModelState.IsValid)
             {
-
+                Debug.WriteLine("test:"+vm.newSlide.CationColor);
                 slide.CaptionText = vm.newSlide.CaptionText;
                 slide.CaptionAlignment = vm.alignment.ToString();
-                
+                slide.CationColor = vm.newSlide.CationColor;
 
 
                 HttpPostedFileBase file = Request.Files["txtAfbeelding"];
