@@ -11,11 +11,13 @@ namespace CSCBelgium.DAO.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tblImages
     {
         public int ImageID { get; set; }
         public int CarID { get; set; }
+        [Display(Name = "Afbeelding")]
         public byte[] Image { get; set; }
         public int ImageOrder { get; set; }
     

@@ -11,12 +11,16 @@ namespace CSCBelgium.DAO.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tblPosts
     {
         public int PostID { get; set; }
+        [Display(Name = "Titel")]
         public string PostTitle { get; set; }
+        [Display(Name = "Beschrijving")]
         public string PostDescription { get; set; }
+        [Display(Name = "Afbeelding")]
         public byte[] PostImage { get; set; }
         public System.DateTime PostDate { get; set; }
     }
