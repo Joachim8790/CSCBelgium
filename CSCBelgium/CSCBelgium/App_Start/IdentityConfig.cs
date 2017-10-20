@@ -20,7 +20,7 @@ namespace CSCBelgium
     {
         public Task SendAsync(IdentityMessage message)
         {
-            var loginInfo = new NetworkCredential("klant.cscbelgium@gmail.com", "Brauwvir1");
+            var loginInfo = new NetworkCredential("klant.cscbelgium@gmail.com", "Defender1!");
             var msg = new MailMessage();
             SmtpClient client = new SmtpClient();
             client.Port = 587;
