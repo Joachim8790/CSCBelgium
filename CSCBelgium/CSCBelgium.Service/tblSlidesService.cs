@@ -34,6 +34,10 @@ namespace CSCBelgium.Service
             dao.updateAlignment(slide, ddlID);
 
         }
+        public void UpdateOrder(tblSlides slide, int txtOrder)
+        {
+            dao.UpdateOrder(slide, txtOrder);
+        }
     }
     
 

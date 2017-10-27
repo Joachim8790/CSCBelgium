@@ -36,6 +36,86 @@ namespace CSCBelgium.Controllers
             return View();
         }
         [Authorize]
+        public ActionResult EditCar(int carID)
+        {
+            EditCarViewModel vm = new EditCarViewModel();
+            tblCarsService cservice = new tblCarsService();
+            tblColorsService colservice = new tblColorsService();
+            tblBrandsService bservice = new tblBrandsService();
+            vm.car = cservice.getCar(carID);
+            vm.selectedBrandId = vm.car.BrandID;
+            vm.selectedColorId = vm.car.ColorID;
+            vm.brandChoice = bservice.getBrands();
+            vm.colorChoice = colservice.getColors();
+            vm.fuelChoice = (Fuel)Enum.Parse(typeof(Fuel), vm.car.CarFuel, true);
+            vm.transmissionChoice = (Transmission)Enum.Parse(typeof(Transmission), vm.car.Transmission, true);
+
+            return View(vm);
+
+        }
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditCar(AddCarViewModel vm)
+        {
+
+            tblCarsService cservice = new tblCarsService();
+            tblColorsService colservice = new tblColorsService();
+            tblBrandsService bservice = new tblBrandsService();
+            tblImagesService iservice = new tblImagesService();
+            tblCars car = cservice.getCar(vm.car.CarID);
+            car.BrandID = vm.selectedBrandId;
+            car.ColorID = vm.selectedColorId;
+            car.CarModel = vm.car.CarModel;
+            car.CarDescription = vm.car.CarDescription;
+            car.CarFuel = vm.fuelChoice.ToString();
+            car.CarKilometers = vm.car.CarKilometers;
+            car.CarPrice = vm.car.CarPrice;
+            car.CarEquipment = vm.car.CarEquipment;
+            car.CarYearOfConstruction = vm.car.CarYearOfConstruction;
+            car.Sold = (byte)0;
+            car.C02Emissions = vm.car.C02Emissions;
+            car.PowerKW = vm.car.PowerKW;
+            car.PowerPK = vm.car.PowerPK;
+            car.CylinderCapacity = vm.car.CylinderCapacity;
+            car.FirstRegistration = vm.car.FirstRegistration;
+            car.Transmission = vm.transmissionChoice.ToString();
+            car.Createdate = DateTime.Now.Date;
+            cservice.editCar(car);
+            List<HttpPostedFileBase> files = vm.files.ToList();
+            for (int i = 0; i < files.Count(); i++)
+            {
+                if (files.ElementAt(i) != null && files.ElementAt(i).ContentLength > 0)
+                {
+                    if (i == 0)
+                    {
+                        iservice.DeleteAllImagesOfCar(vm.car);
+                    }
+                    tblImages Image = new tblImages();
+                    System.Diagnostics.Debug.WriteLine("image");
+                    MemoryStream target = new MemoryStream();
+                    files.ElementAt(i).InputStream.CopyTo(target);
+                    byte[] image = target.ToArray();
+                    Image.CarID = car.CarID;
+                    Image.ImageOrder = i;
+                    Image.Image = image;
+                    Debug.Write("image: " + Image.CarID + "," + Image.ImageOrder + "," + Image.Image);
+                    iservice.AddImage(Image);
+
+                }
+                else
+                {
+                    Debug.WriteLine("file null");
+                    return RedirectToAction("CarIndex");
+
+                }
+
+            }
+            return RedirectToAction("CarIndex");
+
+
+        }
+        [Authorize]
         public ActionResult AddCar()
         {
             AddCarViewModel vm = new AddCarViewModel();
@@ -51,7 +131,7 @@ namespace CSCBelgium.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddCar(AddCarViewModel vm)
-        {    
+        {
             tblCarsService cservice = new tblCarsService();
             tblColorsService colservice = new tblColorsService();
             tblBrandsService bservice = new tblBrandsService();
@@ -75,7 +155,7 @@ namespace CSCBelgium.Controllers
             car.Createdate = DateTime.Now.Date;
             cservice.addCar(car);
             List<HttpPostedFileBase> files = vm.files.ToList();
-            for (int i = 0;i<files.Count();i++)
+            for (int i = 0; i < files.Count(); i++)
             {
                 if (files.ElementAt(i) != null && files.ElementAt(i).ContentLength > 0)
                 {
@@ -95,13 +175,13 @@ namespace CSCBelgium.Controllers
                 else
                 {
                     Debug.WriteLine("file null");
-                    
+
                 }
-               
+
             }
             return RedirectToAction("CarIndex");
 
-           
+
         }
         [Authorize]
         public ActionResult AddColor()
@@ -114,20 +194,24 @@ namespace CSCBelgium.Controllers
         [Authorize]
         public ActionResult ManageSliderImages()
         {
-           tblSlidesService service = new tblSlidesService();
-           ManageSliderImagesViewModel vm = new ManageSliderImagesViewModel();
-           vm.slides = service.getSlides();
-           vm.LinksEerst = Uitlijning.Links;
-           vm.MiddenEerst = Uitlijning.Midden;
-           vm.RechtsEerst = Uitlijning.Rechts;
-           return View(vm);
+            tblSlidesService service = new tblSlidesService();
+            ManageSliderImagesViewModel vm = new ManageSliderImagesViewModel();
+            vm.slides = service.getSlides();
+            vm.LinksEerst = Uitlijning.Links;
+            vm.MiddenEerst = Uitlijning.Midden;
+            vm.RechtsEerst = Uitlijning.Rechts;
+            vm.order = service.getSlides().Select(a => a.SlideOrder).ToList();
+
+
+
+            return View(vm);
         }
         [Authorize]
         public ActionResult addSliderImage()
         {
-            
+
             AddSliderImageViewModel vm = new AddSliderImageViewModel();
-           
+
             return View(vm);
         }
         [Authorize]
@@ -196,12 +280,26 @@ namespace CSCBelgium.Controllers
         {
             tblSlidesService service = new tblSlidesService();
             tblSlides slide = new tblSlides();
+            if (vm.newSlide.CaptionText == null)
+            {
+                vm.newSlide.CaptionText = " ";
+            }
             if (ModelState.IsValid)
             {
-                Debug.WriteLine("test:"+vm.newSlide.CationColor);
+                Debug.WriteLine("test:" + vm.newSlide.CationColor);
                 slide.CaptionText = vm.newSlide.CaptionText;
                 slide.CaptionAlignment = vm.alignment.ToString();
                 slide.CationColor = vm.newSlide.CationColor;
+                if (service.getSlides().Count() != 0)
+                {
+                    slide.SlideOrder = service.getSlides().Select(a => a.SlideOrder).Max() + 1;
+                }
+                else
+                {
+                    slide.SlideOrder = 1;
+                }
+
+
 
 
                 HttpPostedFileBase file = Request.Files["txtAfbeelding"];
@@ -230,7 +328,7 @@ namespace CSCBelgium.Controllers
                 return View();
             }
 
-            
+
         }
         [Authorize]
 
@@ -390,33 +488,58 @@ namespace CSCBelgium.Controllers
         }
         [Authorize]
         [HttpPost]
-        public void alignmentChanged(string parameter)
+        public void OrderChanged(string parameter)
         {
             string[] parameters = parameter.Split('b');
-            Debug.WriteLine(parameter);
-            tblSlidesService service = new tblSlidesService();
-            if (parameters[0].Equals("0"))
+            string s = parameters[0];
+            int result;
+            if (int.TryParse(s, out result))
             {
-                Debug.WriteLine("Links");
-                service.updateAlignment(service.getSlides().ElementAt(Int32.Parse(parameters[1])), 0);
+                Debug.WriteLine(parameter);
+                tblSlidesService service = new tblSlidesService();
+                Debug.WriteLine(parameters[0]);
+                Debug.WriteLine(parameters[1]);
+
+                service.UpdateOrder(service.getSlides().ElementAt(Int32.Parse(parameters[1])), Int32.Parse(parameters[0]));
+            }
+            else
+            {
+                
+            }
+            
+
+        }
+    
+    [Authorize]
+    [HttpPost]
+    public void alignmentChanged(string parameter)
+    {
+        string[] parameters = parameter.Split('b');
+        Debug.WriteLine(parameter);
+        tblSlidesService service = new tblSlidesService();
+        if (parameters[0].Equals("0"))
+        {
+            Debug.WriteLine("Links");
+            service.updateAlignment(service.getSlides().ElementAt(Int32.Parse(parameters[1])), 0);
+
+        }
+        else
+        {
+            if (parameters[0].Equals("1"))
+            {
+                Debug.WriteLine("Midden");
+                service.updateAlignment(service.getSlides().ElementAt(Int32.Parse(parameters[1])), 1);
 
             }
             else
             {
-                if (parameters[0].Equals("1"))
-                {
-                    Debug.WriteLine("Midden");
-                    service.updateAlignment(service.getSlides().ElementAt(Int32.Parse(parameters[1])), 1);
+                Debug.WriteLine("Rechts");
+                service.updateAlignment(service.getSlides().ElementAt(Int32.Parse(parameters[1])), 2);
 
-                }
-                else
-                {
-                    Debug.WriteLine("Rechts");
-                    service.updateAlignment(service.getSlides().ElementAt(Int32.Parse(parameters[1])), 2);
-
-                }
             }
         }
+    }
+     
         [Authorize]
         [HttpPost]
         public void ddlChanged(string parameter)

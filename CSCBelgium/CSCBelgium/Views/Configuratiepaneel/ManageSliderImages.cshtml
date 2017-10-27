@@ -32,6 +32,7 @@
                         <th>Slide onderschrift </th>
                         <th>Opstelling</th>
                         <th>Slide afbeelding</th>
+                        <th>Volgorde</th>
                         <th></th>
 
                     </tr>
@@ -66,7 +67,15 @@
 
 
                             </td>
+                           
                             <td><img alt="" class="postimage" src="data:image;base64,@System.Convert.ToBase64String(Model.slides.Select(a => a.SlideImage).ElementAt(i))" width="250" height="80" /></td>
+                            @{ 
+                               
+
+
+
+                                }
+                            <td width="150">@Html.TextBoxFor(m => m.slides.ElementAt(i).SlideOrder, new { @type="number",@id = "txt" + i, @onchange = string.Format("UpdateOrder({0})", i) })</td>
                             <td>
                                 @*@Ajax.("Verwijder","VerwijderLijn", new { id = Model.Posts.ElementAt(i).PostID }, new AjaxOptions()
                                     {
@@ -110,6 +119,22 @@
                     });
                     $.ajax({
                         url: '@Url.Action("alignmentChanged", "Configuratiepaneel")',
+                        contentType: "application/json; charset=utf-8",
+                        data: "{'parameter': '" + strSelected + "'}",
+                        type: 'POST',
+                        cache: false,
+
+                    });
+                }
+                function UpdateOrder(i) {
+                    var strSelected = "";
+                    console.log($("#txt" + i));
+                    $("#txt" + i).each(function () {
+                        console.log($(this)[0].value);
+                        strSelected += $(this)[0].value + "b" + i;
+                    });
+                    $.ajax({
+                        url: '@Url.Action("OrderChanged", "Configuratiepaneel")',
                         contentType: "application/json; charset=utf-8",
                         data: "{'parameter': '" + strSelected + "'}",
                         type: 'POST',

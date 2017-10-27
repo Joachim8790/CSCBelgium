@@ -20,9 +20,13 @@ namespace CSCBelgium.DAO.Model
         public byte[] SlideImage { get; set; }
         [Display(Name = "Uitlijning")]
         public string CaptionAlignment { get; set; }
-        [Display(Name = "Onderschrift")]
+        [Display(Name = "Tekst")]
         public string CaptionText { get; set; }
         [Display(Name = "Kleur")]
         public string CationColor { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "Je kan enkel getallen invoeren.")]
+        [Display(Name ="Volgorde")]
+    
+        public int SlideOrder { get; set; }
     }
 }

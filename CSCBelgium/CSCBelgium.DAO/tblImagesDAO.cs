@@ -17,6 +17,7 @@ namespace CSCBelgium.DAO
                 db.SaveChanges();
             }
         }
+
         public void DeleteAllImagesOfCar(tblCars car)
         {
             using (var db = new CSCbelgiumDatabaseEntities())

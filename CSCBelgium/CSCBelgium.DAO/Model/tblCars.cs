@@ -37,7 +37,9 @@ namespace CSCBelgium.DAO.Model
         public int CarYearOfConstruction { get; set; }
         [Display(Name = "Kilometerstand")]
         public int CarKilometers { get; set; }
+        [Display(Name = "Verkocht")]
         public byte Sold { get; set; }
+        [Display(Name = "Brandstof")]
         public string CarFuel { get; set; }
         [Display(Name = "Eerste inschrijving")]
         public System.DateTime FirstRegistration { get; set; }
@@ -46,10 +48,11 @@ namespace CSCBelgium.DAO.Model
         [Display(Name = "Vermogen PK")]
         public int PowerPK { get; set; }
         [Display(Name = "Cilinder capaciteit")]
+
         public int CylinderCapacity { get; set; }
         [Display(Name = "Transmissie")]
         public string Transmission { get; set; }
-        [Display(Name = "CO2-uitstoot")]
+        [Display(Name = "C02-uitstoot")]
         public string C02Emissions { get; set; }
         public System.DateTime Createdate { get; set; }
     

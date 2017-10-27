@@ -218,6 +218,7 @@
     <Compile Include="ViewModels\CarIndexViewModel.cs" />
     <Compile Include="ViewModels\CarsViewModel.cs" />
     <Compile Include="ViewModels\ContactViewModel.cs" />
+    <Compile Include="ViewModels\EditCarViewModel.cs" />
     <Compile Include="ViewModels\EditPostsViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\ManageRimsViewModel.cs" />
@@ -240,6 +241,7 @@
     <Content Include="Content\Images\assortiment.jpg" />
     <Content Include="Content\Images\avatar.jpg" />
     <Content Include="Content\Images\avatarDefault.png" />
+    <Content Include="Content\Images\avatarLucas.JPG" />
     <Content Include="Content\Images\banner1.jpg" />
     <Content Include="Content\Images\banner2.jpg" />
     <Content Include="Content\Images\banner3.jpg" />
@@ -372,6 +374,7 @@
     <Content Include="Views\Home\SellCar.cshtml" />
     <Content Include="Views\Home\Services.cshtml" />
     <Content Include="Views\Configuratiepaneel\AddRimBrand.cshtml" />
+    <Content Include="Views\Configuratiepaneel\EditCar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

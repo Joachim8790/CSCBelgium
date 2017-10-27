@@ -14,7 +14,7 @@ namespace CSCBelgium.DAO
         {
             using (var db = new CSCbelgiumDatabaseEntities())
             {
-                return db.tblSlides.ToList();
+                return db.tblSlides.OrderBy(a => a.SlideOrder).ToList();
 
             }
         }
@@ -46,23 +46,33 @@ namespace CSCBelgium.DAO
 
             }
         }
-        public void updateAlignment(tblSlides slide,int ddlID)
+        public void updateAlignment(tblSlides slide, int ddlID)
         {
             using (var db = new CSCbelgiumDatabaseEntities())
             {
                 switch (ddlID)
                 {
                     case 0:
-                            slide.CaptionAlignment = "Links";
+                        slide.CaptionAlignment = "Links";
                         break;
                     case 1:
-                            slide.CaptionAlignment = "Midden";
+                        slide.CaptionAlignment = "Midden";
                         break;
                     case 2:
-                            slide.CaptionAlignment = "Rechts";
+                        slide.CaptionAlignment = "Rechts";
                         break;
 
                 }
+                db.Entry(slide).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+            public void UpdateOrder(tblSlides slide, int txtOrder)
+        {
+            using (var db = new CSCbelgiumDatabaseEntities())
+            {
+                System.Diagnostics.Debug.WriteLine(txtOrder);
+                slide.SlideOrder = txtOrder;
                 db.Entry(slide).State = EntityState.Modified;
                 db.SaveChanges();
             }

@@ -22,7 +22,7 @@ namespace CSCBelgium.DAO.Model
         }
     
         public int BrandID { get; set; }
-        [Display(Name ="Merk")]
+        [Display(Name = "Merk")]
         public string BrandName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
