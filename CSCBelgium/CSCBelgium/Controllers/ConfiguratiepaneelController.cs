@@ -600,7 +600,7 @@ namespace CSCBelgium.Controllers
             vm.CarsInStock = service.getAllCars().Where(a => a.Sold == 0).Count();
             vm.JaNee= JaNee.Ja;
             vm.NeeJa = JaNee.Nee;
-            vm.Images = service.getAllImages();
+           
             return View(vm);
         }
     }

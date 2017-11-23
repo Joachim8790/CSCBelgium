@@ -37,7 +37,6 @@
                     <th>bouwjaar</th>
                     <th>kilometerstand</th>
                     <th>verkocht</th>
-                    <th>afbeeldingen</th>
                     <th></th>
 
                 </tr>
@@ -73,14 +72,6 @@
 
                             </td>
 
-                        
-                        <td>
-                            @foreach (var image in Model.Images.Where(a => a.CarID == Model.Cars.ElementAt(i).CarID))
-                            {
-                                <img alt="" class="postimage" src="data:image;base64,@System.Convert.ToBase64String(image.Image)" width="80" height="80" />
-                            }
-                        
-                        </td>
                         
                         <td>
                             @Ajax.RawActionLink(string.Format("<i class='material-icons tooltipped' data-position='bottom' data-delay='1' data-tooltip='Auto verwijderen'>close</i>"), "VerwijderAuto", null, new { id = Model.Cars.ElementAt(i).CarID }, new AjaxOptions { HttpMethod = "DELETE", Confirm = "Ben je zeker dat je deze auto wilt verwijderen?", OnComplete = string.Format("DeleteRijInTabel({0})", i) }, new { @class = "class" })
