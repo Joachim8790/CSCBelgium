@@ -62,7 +62,7 @@ namespace CSCBelgium.Controllers
                 vm.maxPrice = service.getAllCars().Max(b => b.CarPrice);
                 vm.brandChoice = bservice.getBrands();
                 vm.colorChoice = colservice.getColors();
-                vm.images = service.getAllImages();
+                vm.images = service.GetFrontImages();
                 vm.CarsInStock = service.getAllCars().Where(a => a.Sold == 0).Count();
             }
 

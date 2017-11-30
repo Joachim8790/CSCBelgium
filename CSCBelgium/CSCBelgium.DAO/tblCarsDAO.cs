@@ -145,6 +145,14 @@ namespace CSCBelgium.DAO
                 return db.tblImages.Where(a => a.CarID == car.CarID).ToList();
             }
         }
+        public ICollection<tblImages> GetFrontImages()
+        {
+            using (var db = new CSCbelgiumDatabaseEntities())
+            {
+
+                return db.tblImages.Where(a => a.ImageOrder == 0).ToList();
+            }
+        }
 
     }
 }

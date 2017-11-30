@@ -70,5 +70,9 @@ namespace CSCBelgium.Service
         {
             return dao.GetImagesByCar(car);
         }
+        public ICollection<tblImages> GetFrontImages()
+        {
+            return dao.GetFrontImages();
+        }
     }
 }
