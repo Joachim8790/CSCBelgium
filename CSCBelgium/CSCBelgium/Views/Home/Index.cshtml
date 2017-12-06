@@ -7,7 +7,53 @@
 @using CSCBelgium.Views.Configuratiepaneel.CustomCode;
 <div class="slider custom" style="height:550px;">
     <ul class="slides" style="height:550px;">
-        @for (int i = 0; i < Model.slides.Count(); i++)
+        <li>
+
+            <img src="~/Content/Images/testimages/img_row_0001_col_0001.png" /> <!-- random image -->
+            
+        </li>
+        <li>
+
+            <img src="~/Content/Images/testimages/img_row_0002_col_0001.png" /> <!-- random image -->
+
+        </li>
+        <li>
+
+            <img src="~/Content/Images/testimages/img_row_0003_col_0001.jpg" /> <!-- random image -->
+
+        </li>
+        <li>
+
+            <img src="~/Content/Images/testimages/img_row_0004_col_0001.jpg" /> <!-- random image -->
+
+        </li>
+        <li>
+
+            <img src="~/Content/Images/testimages/img_row_0005_col_0001.jpg" /> <!-- random image -->
+
+        </li>
+        <li>
+
+            <img src="~/Content/Images/testimages/img_row_0006_col_0001.jpg" /> <!-- random image -->
+
+        </li>
+        <li>
+
+            <img src="~/Content/Images/testimages/img_row_0007_col_0001.jpg" /> <!-- random image -->
+
+        </li>
+        <li>
+
+            <img src="~/Content/Images/testimages/img_row_0008_col_0001.jpg" /> <!-- random image -->
+
+        </li>
+        <li>
+
+            <img src="~/Content/Images/testimages/img_row_0009_col_0001.jpg" /> <!-- random image -->
+
+        </li>
+
+        @*@for (int i = 0; i < Model.slides.Count(); i++)
         {
             if (Model.slides.ElementAt(i).CaptionAlignment == Uitlijning.Links.ToString())
             {
@@ -43,7 +89,7 @@
                 }
             }
 
-        }
+        }*@
     </ul>
     <nav id="nav-arrows" class="nav-arrows">
         <span class="nav-arrow-prev">Previous</span>

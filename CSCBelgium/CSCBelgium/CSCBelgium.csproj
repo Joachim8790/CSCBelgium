@@ -249,6 +249,15 @@
     <Content Include="Content\Images\logocontact.png" />
     <Content Include="Content\Images\postsbg.jpg" />
     <Content Include="Content\Images\services.jpg" />
+    <Content Include="Content\Images\testimages\img_row_0001_col_0001.png" />
+    <Content Include="Content\Images\testimages\img_row_0002_col_0001.png" />
+    <Content Include="Content\Images\testimages\img_row_0003_col_0001.jpg" />
+    <Content Include="Content\Images\testimages\img_row_0004_col_0001.jpg" />
+    <Content Include="Content\Images\testimages\img_row_0005_col_0001.jpg" />
+    <Content Include="Content\Images\testimages\img_row_0006_col_0001.jpg" />
+    <Content Include="Content\Images\testimages\img_row_0007_col_0001.jpg" />
+    <Content Include="Content\Images\testimages\img_row_0008_col_0001.jpg" />
+    <Content Include="Content\Images\testimages\img_row_0009_col_0001.jpg" />
     <Content Include="Content\Images\verkoopuwauto.jpg" />
     <Content Include="Content\Images\welcomebg.jpg" />
     <Content Include="Content\Images\wheel.png" />
