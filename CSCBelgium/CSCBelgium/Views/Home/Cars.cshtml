@@ -159,7 +159,7 @@
                    @if (service.isSold(car))
                    {
                     <a href="#">
-                        <div class="card-image waves-effect waves-block waves-light" style="height:250px;width:100%;background:url(data:image;base64,@System.Convert.ToBase64String(Model.images.Where(a => a.CarID == car.CarID).FirstOrDefault().Image)) no-repeat center center ;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+                        <div class="card-image waves-effect waves-block waves-light" style="height:250px;width:100%;background:url('../../Content/Filesystem/@Model.images..Where(a => a.CarID == car.CarID).FirstOrDefault().ImagePath')) no-repeat center center ;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
                             @*<img alt="" class="activator" src="data:image;base64,@System.Convert.ToBase64String(post.PostImage)" />*@
                         </div>
                     </a>
@@ -167,7 +167,7 @@
                    else
                    {
                     <a href="@Url.Action("CarDetails","Home",new { carID = car.CarID })">
-                        <div class="card-image waves-effect waves-block waves-light" style="height:250px;width:100%;background:url(data:image;base64,@System.Convert.ToBase64String(Model.images.Where(a => a.CarID == car.CarID).FirstOrDefault().Image)) no-repeat center center ;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+                        <div class="card-image waves-effect waves-block waves-light" style="height:250px;width:100%;background:url('../../Content/Filesystem/@Model.images.Where(a => a.CarID == car.CarID).FirstOrDefault().ImagePath)) no-repeat center center ;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
                             @*<img alt="" class="activator" src="data:image;base64,@System.Convert.ToBase64String(post.PostImage)" />*@
                         </div>
                     </a>

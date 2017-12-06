@@ -11,8 +11,7 @@ namespace CSCBelgium.DAO.Model
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class tblRimBrands
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,7 +21,6 @@ namespace CSCBelgium.DAO.Model
         }
     
         public int RimBrandID { get; set; }
-        [Display(Name = "Velg merk")]
         public string RimBrandName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

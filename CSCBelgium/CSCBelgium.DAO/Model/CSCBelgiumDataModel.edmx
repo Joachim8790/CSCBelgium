@@ -48,7 +48,7 @@
           </Key>
           <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CarID" Type="int" Nullable="false" />
-          <Property Name="Image" Type="image" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="100" />
           <Property Name="ImageOrder" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tblPosts">
@@ -240,9 +240,9 @@
           </Key>
           <Property Name="ImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CarID" Type="Int32" Nullable="false" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="ImageOrder" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tblCars" Relationship="Self.FK_tblImages_tblCars" FromRole="tblImages" ToRole="tblCars" />
+          <Property Name="ImagePath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblPosts">
           <Key>
@@ -434,9 +434,9 @@
           <EntitySetMapping Name="tblImages">
             <EntityTypeMapping TypeName="CSCBelgiumDatabaseModel.tblImages">
               <MappingFragment StoreEntitySet="tblImages">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
                 <ScalarProperty Name="ImageID" ColumnName="ImageID" />
                 <ScalarProperty Name="CarID" ColumnName="CarID" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="ImageOrder" ColumnName="ImageOrder" />
               </MappingFragment>
             </EntityTypeMapping>
