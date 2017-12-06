@@ -241,14 +241,8 @@
     <Content Include="Content\fotorama.css" />
     <Content Include="Content\Images\arches.png" />
     <Content Include="Content\Images\assortiment.jpg" />
-    <Content Include="Content\Images\avatar.jpg" />
     <Content Include="Content\Images\avatarDefault.png" />
     <Content Include="Content\Images\avatarLucas.JPG" />
-    <Content Include="Content\Images\banner1.jpg" />
-    <Content Include="Content\Images\banner2.jpg" />
-    <Content Include="Content\Images\banner3.jpg" />
-    <Content Include="Content\Images\banner4.jpg" />
-    <Content Include="Content\Images\Contact.jpg" />
     <Content Include="Content\Images\contactbg.jpg" />
     <Content Include="Content\Images\facebook.png" />
     <Content Include="Content\Images\logo.png" />
