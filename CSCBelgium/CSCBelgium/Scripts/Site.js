@@ -58,6 +58,8 @@
    
     window.onload = function () {
         $('select').material_select();
+        AOS.refresh();
+
     };
     if (document.getElementById('timeDiv') != null)
     {
