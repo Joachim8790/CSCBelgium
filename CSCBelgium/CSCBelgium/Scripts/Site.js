@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    AOS.init();
     $('.slider').slider();
     $('.slider').height(550);
     $('.slides').height(550);
