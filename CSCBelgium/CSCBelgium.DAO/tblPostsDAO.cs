@@ -19,6 +19,14 @@ namespace CSCBelgium.DAO
                return  db.tblPosts.ToList();
             }
         }
+        public void UpdatePost(tblPosts post)
+        {
+            using (var db = new CSCbelgiumDatabaseEntities())
+            {
+                db.Entry(post).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
         public ICollection<tblPosts> get30LastPosts()
         {
 

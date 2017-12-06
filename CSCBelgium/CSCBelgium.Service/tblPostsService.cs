@@ -40,5 +40,10 @@ namespace CSCBelgium.Service
             tblPostsDAO dao = new tblPostsDAO();
             return  dao.get30LastPosts();
         }
+        public void UpdatePost(tblPosts post)
+        {
+            tblPostsDAO dao = new tblPostsDAO();
+            dao.UpdatePost(post);
+        }
     }
 }

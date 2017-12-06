@@ -1,6 +1,7 @@
 ﻿using CSCBelgium.DAO.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,14 @@ namespace CSCBelgium.DAO
             using (var db = new CSCbelgiumDatabaseEntities())
             {
                 db.tblImages.Add(image);
+                db.SaveChanges();
+            }
+        }
+        public void UpdateImage(tblImages image)
+        {
+            using (var db = new CSCbelgiumDatabaseEntities())
+            {
+                db.Entry(image).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }

@@ -38,6 +38,10 @@ namespace CSCBelgium.Service
         {
             dao.UpdateOrder(slide, txtOrder);
         }
+        public void UpdateSlide(tblSlides slide)
+        {
+            dao.UpdateSlide(slide);
+        }
     }
     
 

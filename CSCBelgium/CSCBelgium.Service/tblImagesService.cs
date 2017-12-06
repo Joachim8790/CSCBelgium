@@ -19,5 +19,9 @@ namespace CSCBelgium.Service
         {
             dao.DeleteAllImagesOfCar(car);
         }
+        public void UpdateImage(tblImages image)
+        {
+            dao.UpdateImage(image);
+        }
     }
 }

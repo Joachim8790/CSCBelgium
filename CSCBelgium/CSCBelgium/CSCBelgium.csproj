@@ -226,6 +226,7 @@
     <Compile Include="ViewModels\RimDetailsViewModel.cs" />
     <Compile Include="ViewModels\RimsViewModel.cs" />
     <Compile Include="ViewModels\SellCarViewModel.cs" />
+    <Compile Include="ViewModels\TestViewModel.cs" />
     <Compile Include="Views\Configuratiepaneel\CustomCode\Fuel.cs" />
     <Compile Include="Views\Configuratiepaneel\CustomCode\HelperExtensions.cs" />
     <Compile Include="Views\Configuratiepaneel\CustomCode\JaNee.cs" />
@@ -375,6 +376,7 @@
     <Content Include="Views\Home\Services.cshtml" />
     <Content Include="Views\Configuratiepaneel\AddRimBrand.cshtml" />
     <Content Include="Views\Configuratiepaneel\EditCar.cshtml" />
+    <Content Include="Views\Home\DitIsEenTestPaginaEnHierKanJeNietsOpDoen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

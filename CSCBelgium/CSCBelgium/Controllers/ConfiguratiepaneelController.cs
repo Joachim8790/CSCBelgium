@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Web.Mvc.Ajax;
 using CSCBelgium.Views.Configuratiepaneel.CustomCode;
 using System.Text.RegularExpressions;
+using System.Drawing;
 
 namespace CSCBelgium.Controllers
 {
@@ -33,6 +34,15 @@ namespace CSCBelgium.Controllers
         [Authorize]
         public ActionResult AddPost()
         {
+            //tblPostsService service = new tblPostsService();
+            //ICollection<tblPosts> posts = service.getAllPosts();
+
+            //for (int i = 0; i < posts.Count(); i++)
+            //{
+            //    tblPosts temp = posts.ElementAt(i);
+            //    temp.PostImage = ResizeImage(temp.PostImage, 0.70f);
+            //    service.UpdatePost(temp);
+            //}
             return View();
         }
         [Authorize]
@@ -51,6 +61,35 @@ namespace CSCBelgium.Controllers
             vm.transmissionChoice = (Transmission)Enum.Parse(typeof(Transmission), vm.car.Transmission, true);
 
             return View(vm);
+
+        }
+        private static byte[] ResizeImage(byte[] array, float resizePercentage, bool OnlyWhenGreaterThan800kB = false)
+        {
+            if (OnlyWhenGreaterThan800kB)
+            {
+                if (array.Length < 800000)
+                {
+                    Debug.WriteLine("Afbeelding is reeds kleiner dan 800 kB");
+                    return array;
+                }
+            }
+            Bitmap image;
+            using (var ms = new System.IO.MemoryStream(array))
+            {
+                image = new Bitmap(ms);
+            }
+            int currentWidth = image.Width;
+            int currentHeight = image.Height;
+            int width = (int)((float)currentWidth * resizePercentage);
+            int height = (int)((float)currentHeight * resizePercentage);
+            Bitmap resizedImage = new Bitmap(width, height);
+            using (Graphics gfx = Graphics.FromImage(resizedImage))
+            {
+                gfx.DrawImage(image, new Rectangle(0, 0, width, height),
+                    new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
+            }
+            ImageConverter converter = new ImageConverter();
+            return (byte[])converter.ConvertTo(resizedImage, typeof(byte[]));
 
         }
         [Authorize]
@@ -83,6 +122,13 @@ namespace CSCBelgium.Controllers
             car.Createdate = DateTime.Now.Date;
             cservice.editCar(car);
             List<HttpPostedFileBase> files = vm.files.ToList();
+            //ICollection<tblImages> images = cservice.GetImagesByCar(car);
+            //for (int i = 0; i < images.Count() ; i++)
+            //{
+            //    tblImages temp = images.ElementAt(i);
+            //    temp.Image = ResizeImage(temp.Image, 0.70f);
+            //    iservice.UpdateImage(temp);
+            //}
             for (int i = 0; i < files.Count(); i++)
             {
                 if (files.ElementAt(i) != null && files.ElementAt(i).ContentLength > 0)
@@ -211,7 +257,6 @@ namespace CSCBelgium.Controllers
         {
 
             AddSliderImageViewModel vm = new AddSliderImageViewModel();
-
             return View(vm);
         }
         [Authorize]

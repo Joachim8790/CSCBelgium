@@ -15,6 +15,7 @@ using System.Net.Mail;
 using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.Owin;
+using System.Drawing;
 
 namespace CSCBelgium.Controllers
 {
@@ -119,6 +120,39 @@ namespace CSCBelgium.Controllers
             vm.CarsInStock = service.getAllCars().Where(a => a.Sold == 0).Count();
             return View(vm);
         }
+        //TEMP
+        
+        //private static byte[] ResizeImage(byte[] array, float resizePercentage,bool OnlyWhenGreaterThan800kB = false)
+        //{
+        //    if (OnlyWhenGreaterThan800kB)
+        //    {
+        //        if (array.Length < 800000)
+        //        {
+        //            Debug.WriteLine("Afbeelding is reeds kleiner dan 800 kB");
+        //            return array;
+        //        }
+        //    }
+        //    Bitmap image;
+        //    using (var ms = new System.IO.MemoryStream(array))
+        //    {
+        //        image = new Bitmap(ms);
+        //    }
+        //    int currentWidth = image.Width;
+        //    int currentHeight = image.Height;
+        //    int width = (int)((float)currentWidth * resizePercentage);
+        //    int height = (int)((float)currentHeight * resizePercentage);
+        //    Bitmap resizedImage = new Bitmap(width, height);
+        //    using (Graphics gfx = Graphics.FromImage(resizedImage))
+        //    {
+        //        gfx.DrawImage(image, new Rectangle(0, 0, width, height),
+        //            new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
+        //    }
+        //    ImageConverter converter = new ImageConverter();
+        //    return (byte[])converter.ConvertTo(resizedImage, typeof(byte[]));
+
+        //}
+
+        //END TEMP
         public ActionResult CarDetails(int carID)
         {
             
@@ -132,7 +166,7 @@ namespace CSCBelgium.Controllers
             {
                 tblBrandsService bservice = new tblBrandsService();
                 vm.car = service.getCar(carID);
-                vm.images = service.getAllImages().Where(a => a.CarID == carID).ToList();
+                vm.images = service.GetImagesByCar(vm.car);
                 vm.car.CarEquipment = Regex.Replace(vm.car.CarEquipment, @"\r\n?|\n", ",");
                 vm.carbrand = bservice.getBrand(vm.car.BrandID).BrandName;
                 vm.carmodel = vm.car.CarModel;
@@ -297,6 +331,22 @@ namespace CSCBelgium.Controllers
 
             return RedirectToAction("Index");
         }
-         
-}
+        //public ActionResult DitIsEenTestPaginaEnHierKanJeNietsOpDoen()
+        //{
+        //    TestViewModel vm = new TestViewModel();
+        //    tblCarsService cservice = new tblCarsService();
+        //    int carid = cservice.getAllCars().Take(1).Select(a => a.CarID).First();
+        //    vm.afbeeldingen = cservice.getXImagesOfCarY(2, carid);
+        //    vm.afbeeldingen.ElementAt(0).Image = ResizeImage(vm.afbeeldingen.ElementAt(0).Image, 0.40f,true);
+        //    vm.afbeeldingen.ElementAt(1).Image = ResizeImage(vm.afbeeldingen.ElementAt(1).Image, 0.40f,true);
+        //    Debug.WriteLine(carid);
+        //    Debug.WriteLine(vm.afbeeldingen.Count());
+        //    return View(vm);
+
+
+        //}
+
+    }
+    
+   
 }

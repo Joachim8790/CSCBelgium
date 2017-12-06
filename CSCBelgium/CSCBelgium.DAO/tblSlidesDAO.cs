@@ -46,6 +46,14 @@ namespace CSCBelgium.DAO
 
             }
         }
+        public void UpdateSlide(tblSlides slide)
+        {
+            using (var db = new CSCbelgiumDatabaseEntities())
+            {
+                db.Entry(slide).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
         public void updateAlignment(tblSlides slide, int ddlID)
         {
             using (var db = new CSCbelgiumDatabaseEntities())
