@@ -15,10 +15,10 @@ namespace CSCBelgium.DAO.Model
     public partial class tblSlides
     {
         public int SlideID { get; set; }
-        public byte[] SlideImage { get; set; }
         public string CaptionAlignment { get; set; }
         public string CaptionText { get; set; }
         public string CationColor { get; set; }
         public int SlideOrder { get; set; }
+        public string ImagePath { get; set; }
     }
 }

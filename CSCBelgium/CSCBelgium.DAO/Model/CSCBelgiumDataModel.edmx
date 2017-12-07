@@ -48,7 +48,7 @@
           </Key>
           <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CarID" Type="int" Nullable="false" />
-          <Property Name="ImagePath" Type="nvarchar" MaxLength="100" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="ImageOrder" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tblPosts">
@@ -91,7 +91,7 @@
             <PropertyRef Name="SlideID" />
           </Key>
           <Property Name="SlideID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SlideImage" Type="image" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="100" />
           <Property Name="CaptionAlignment" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CaptionText" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="CationColor" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -242,7 +242,7 @@
           <Property Name="CarID" Type="Int32" Nullable="false" />
           <Property Name="ImageOrder" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tblCars" Relationship="Self.FK_tblImages_tblCars" FromRole="tblImages" ToRole="tblCars" />
-          <Property Name="ImagePath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="tblPosts">
           <Key>
@@ -288,11 +288,11 @@
             <PropertyRef Name="SlideID" />
           </Key>
           <Property Name="SlideID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SlideImage" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="CaptionAlignment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CaptionText" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CationColor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SlideOrder" Type="Int32" Nullable="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_tblCars_tblBrands">
           <End Role="tblBrands" Type="Self.tblBrands" Multiplicity="1" />
@@ -483,10 +483,10 @@
           <EntitySetMapping Name="tblSlides">
             <EntityTypeMapping TypeName="CSCBelgiumDatabaseModel.tblSlides">
               <MappingFragment StoreEntitySet="tblSlides">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
                 <ScalarProperty Name="SlideOrder" ColumnName="SlideOrder" />
                 <ScalarProperty Name="CationColor" ColumnName="CationColor" />
                 <ScalarProperty Name="SlideID" ColumnName="SlideID" />
-                <ScalarProperty Name="SlideImage" ColumnName="SlideImage" />
                 <ScalarProperty Name="CaptionAlignment" ColumnName="CaptionAlignment" />
                 <ScalarProperty Name="CaptionText" ColumnName="CaptionText" />
               </MappingFragment>

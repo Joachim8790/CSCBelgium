@@ -13,7 +13,7 @@
             {
                 <li>
 
-                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.slides.Select(a => a.SlideImage).ElementAt(i))"/> <!-- random image -->
+                    <img src="~/Content/FileSystem/@Model.slides.ElementAt(i).ImagePath.ToString()"/> <!-- random image -->
                     <div class="caption left-align">
                         <h3 style="font-weight:bold;color:#@Model.slides.ElementAt(i).CationColor">@Model.slides.ElementAt(i).CaptionText</h3>
                     </div>
@@ -25,7 +25,7 @@
                 {
                     <li>
 
-                        <img src="data:image;base64,@System.Convert.ToBase64String(Model.slides.Select(a => a.SlideImage).ElementAt(i))" /> <!-- random image -->
+                        <img src="~/Content/FileSystem/@Model.slides.ElementAt(i).ImagePath.ToString()" /> <!-- random image -->
                         <div class="caption center-align">
                             <h3 style="font-weight:bold;color:#@Model.slides.ElementAt(i).CationColor">@Model.slides.ElementAt(i).CaptionText</h3>
                         </div>
@@ -35,7 +35,7 @@
                 {
                     <li>
 
-                        <img src="data:image;base64,@System.Convert.ToBase64String(Model.slides.Select(a => a.SlideImage).ElementAt(i))" /> <!-- random image -->
+                        <img src="~/Content/FileSystem/@Model.slides.ElementAt(i).ImagePath.ToString()" /> <!-- random image -->
                         <div class="caption right-align">
                             <h3 style="font-weight:bold;color:#@Model.slides.ElementAt(i).CationColor">@Model.slides.ElementAt(i).CaptionText</h3>
                         </div>
