@@ -7,6 +7,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <link rel="stylesheet" href="~/Content/aos.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/normalize.css">
     <link rel="stylesheet" href="~/Content/styles.css">
@@ -14,13 +15,14 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300' rel='stylesheet' type='text/css'>
     <link rel="icon" href="@Url.Content("~/Content/Images/favicon.ico")" />
+    <script src="~/Scripts/aos.js"></script>
 
 
 </head>
 <body>
     
     <div>
-        <ul id="slide-out" class="side-nav fixed">
+        <ul id="slide-out" class="side-nav fixed" style="left:unset!important;right:0!important;">
             <li><a href="#" class="brand-logo" style="margin-bottom:40px;margin-top:20px;text-align:center;"><img src="~/Content/Images/logo.png" width="200" height="74" /></a></li>
             <li>@Html.ActionLink("Nieuwsberichten","EditPosts","Configuratiepaneel")</li>
             <li>@Html.ActionLink("Auto-overzicht", "CarIndex", "Configuratiepaneel")</li>
