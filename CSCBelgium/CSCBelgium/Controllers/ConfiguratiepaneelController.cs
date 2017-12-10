@@ -66,6 +66,14 @@ namespace CSCBelgium.Controllers
             fs.Write(ImageArray);
             fs.Close();
         }
+        private void deleteSlideImagesFromFileSystem(int slideid)
+        {
+            System.IO.Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + @"Content\FileSystem\Slides\Slide" + slideid, true);
+        }
+        private void deleteCarImagesFromFileSystem(int carid)
+        {
+            System.IO.Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + @"Content\FileSystem\Cars\Car"+carid, true);
+        }
         [Authorize]
         public ActionResult EditCar(int carID)
         {
@@ -528,6 +536,7 @@ namespace CSCBelgium.Controllers
 
             tblCarsService carservice = new tblCarsService();
             carservice.deleteCar(id);
+            deleteCarImagesFromFileSystem(id);
 
         }
         [Authorize]
@@ -548,6 +557,7 @@ namespace CSCBelgium.Controllers
 
             tblSlidesService slideService = new tblSlidesService();
             slideService.deleteSlide(id);
+            deleteSlideImagesFromFileSystem(id);
 
         }
         [Authorize]
