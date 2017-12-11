@@ -14,7 +14,9 @@ namespace CSCBelgium
                         "~/Scripts/jquery-ui.unobtrusive-{version}.js",
                         "~/Scripts/Site.js",
                         "~/Scripts/fotorama.js",
-                        "~/Scripts/jscolor.js"));
+                        "~/Scripts/jscolor.js",
+                        "~/Scripts/aos.js",
+                        "~/Scripts/hexagons.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*",
@@ -36,7 +38,9 @@ namespace CSCBelgium
                       "~/Content/site.css",
                       "~/Content/materialize.css"
                       ,"~/Content/nouislider.css",
-                      "~/Content/fotorama.css"));
+                      "~/Content/fotorama.css",
+                      "~/Content/aos.css",
+                      "~/Content/hexagons.css"));
 
 
 

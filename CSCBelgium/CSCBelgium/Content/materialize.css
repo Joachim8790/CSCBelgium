@@ -4827,7 +4827,7 @@ small {
 }
 
 .card .card-image {
-  position: relative;
+  position: initial;
 }
 
 .card .card-image img {

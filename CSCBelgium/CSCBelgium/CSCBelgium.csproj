@@ -352,12 +352,14 @@
     <Content Include="Content\FileSystem\Slides\Slide23\slide.jpg" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\fotorama.css" />
+    <Content Include="Content\hexagons.css" />
     <Content Include="Content\Images\arches.png" />
     <Content Include="Content\Images\assortiment.jpg" />
     <Content Include="Content\Images\avatarDefault.png" />
     <Content Include="Content\Images\avatarLucas.JPG" />
     <Content Include="Content\Images\contactbg.jpg" />
     <Content Include="Content\Images\facebook.png" />
+    <Content Include="Content\Images\logo.jpg" />
     <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\logocontact.png" />
     <Content Include="Content\Images\postsbg.jpg" />
@@ -419,6 +421,7 @@
     <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\fotorama.js" />
+    <Content Include="Scripts\hexagons.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
