@@ -175,7 +175,7 @@ namespace CSCBelgium.Controllers
                     Image.ImageOrder = i;
                     Image.ImagePath = "Temp";
                     iservice.AddImage(Image);
-                    Image.ImagePath = @"Cars\Car" + car.CarID + @"\Image" + Image.ImageID + ".jpg";
+                    Image.ImagePath = @"Cars/Car" + car.CarID + @"/Image" + Image.ImageID + ".jpg";
                     iservice.UpdateImage(Image);
                     addCarImagesToFileSystem(Image, image);
 
@@ -246,7 +246,7 @@ namespace CSCBelgium.Controllers
                     Image.ImagePath =@"Cars\Car"+car.CarID+@"\Image";
                     tblImagesService iservice = new tblImagesService();
                     iservice.AddImage(Image);
-                    Image.ImagePath = @"Cars\Car" + car.CarID + @"\Image" + Image.ImageID+".jpg" ;
+                    Image.ImagePath = @"Cars/Car" + car.CarID + @"/Image" + Image.ImageID+".jpg" ;
                     iservice.UpdateImage(Image);
                     addCarImagesToFileSystem(Image, image);
 
@@ -409,9 +409,9 @@ namespace CSCBelgium.Controllers
                     MemoryStream target = new MemoryStream();
                     file.InputStream.CopyTo(target);
                     byte[] image = target.ToArray();
-                    slide.ImagePath = @"Slides\Slide";
+                    slide.ImagePath = @"Slides/Slide";
                     service.addSlide(slide);
-                    slide.ImagePath = @"Slides\Slide" + slide.SlideID + @"\image.jpg";
+                    slide.ImagePath = @"Slides/Slide" + slide.SlideID + @"/image.jpg";
                     service.UpdateSlide(slide);
                     addSlideImagesToFileSystem(slide, image);
                     return RedirectToAction("ManageSliderImages");
