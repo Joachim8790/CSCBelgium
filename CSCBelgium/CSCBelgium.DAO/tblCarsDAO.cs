@@ -15,7 +15,9 @@ namespace CSCBelgium.DAO
         {
             using (var db = new CSCbelgiumDatabaseEntities())
             {
-                return db.tblCars.Include(a => a.tblBrands).Include(b => b.tblColors).OrderBy(a => a.Createdate).ToList();
+                ICollection<tblCars> NotSoldCars = db.tblCars.Include(a => a.tblBrands).Include(b => b.tblColors).Where(a => a.Sold ==0).OrderByDescending(a => a.Createdate).ToList();
+                ICollection<tblCars> SoldCars = db.tblCars.Include(a => a.tblBrands).Include(b => b.tblColors).Where(a => a.Sold == 1).OrderByDescending(a => a.Createdate).ToList();
+                return NotSoldCars.Union(SoldCars).ToList();
             }
 
         }
