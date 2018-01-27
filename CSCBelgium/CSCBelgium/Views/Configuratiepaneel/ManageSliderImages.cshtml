@@ -44,7 +44,7 @@
                             <td>@Model.slides.Select(a => a.CaptionText).ElementAt(i).ToString()</td>
                             <td>
                                 <div class="input-field col s12 form">
-                                    @if (service.getSlides().ElementAt(i).CaptionAlignment==Uitlijning.Links.ToString())
+                                    @if (service.getSlides().ElementAt(i).CaptionAlignment == Uitlijning.Links.ToString())
                                     {
                                         @Html.EnumDropDownListFor(model => model.LinksEerst, new { @id = "ddl" + i, @onchange = string.Format("UpdateAlignement({0})", i) })
                                     }
@@ -67,10 +67,10 @@
 
 
                             </td>
-                           
-                            <td><img alt="" class="postimage" src="~/Content/FileSystem/Slides/Slide@Model.slides.ElementAt(i).SlideID/slide.jpg" width="250" height="80" /></td>
+                           @{String slide = "~/Content/FileSystem/Slides/Slide" + Model.slides.ElementAt(i).SlideID + "/slide.jpg"; }
+                            <td><img alt="" class="postimage" src="@slide" width="250" height="80" /></td>
                             @{ 
-                               
+
 
 
 
