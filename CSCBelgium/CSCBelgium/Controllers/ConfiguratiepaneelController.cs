@@ -58,7 +58,7 @@ namespace CSCBelgium.Controllers
         }
         private void addSlideImagesToFileSystem(tblSlides slide, byte[] ImageArray)
         {
-            string filename = "image.jpg";
+            string filename = "slide.jpg";
             System.IO.Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"Content\Filesystem");
             System.IO.Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"Content\Filesystem\Slides\Slide" + slide.SlideID);
 
