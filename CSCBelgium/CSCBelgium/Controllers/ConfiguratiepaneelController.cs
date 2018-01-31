@@ -411,7 +411,7 @@ namespace CSCBelgium.Controllers
                     byte[] image = target.ToArray();
                     slide.ImagePath = @"Slides/Slide";
                     service.addSlide(slide);
-                    slide.ImagePath = @"Slides/Slide" + slide.SlideID + @"/image.jpg";
+                    slide.ImagePath = @"Slides/Slide" + slide.SlideID + @"/slide.jpg";
                     service.UpdateSlide(slide);
                     addSlideImagesToFileSystem(slide, image);
                     return RedirectToAction("ManageSliderImages");
