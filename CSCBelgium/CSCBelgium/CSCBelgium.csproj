@@ -353,6 +353,7 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\fotorama.css" />
     <Content Include="Content\hexagons.css" />
+    <Content Include="Content\Images\avatarJonas.png" />
     <Content Include="Content\Images\arches.png" />
     <Content Include="Content\Images\assortiment.jpg" />
     <Content Include="Content\Images\avatarDefault.png" />
