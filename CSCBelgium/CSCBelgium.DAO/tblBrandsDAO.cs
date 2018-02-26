@@ -14,14 +14,14 @@ namespace CSCBelgium.DAO
         {
             using (var db = new CSCbelgiumDatabaseEntities())
             {
-                return db.tblBrands.ToList();
+                return db.tblBrands.Include(a => a.tblCars).ToList();
             }
         }
         public tblBrands getBrand(int brandID)
         {
             using (var db = new CSCbelgiumDatabaseEntities())
             {
-                return db.tblBrands.Where(a => a.BrandID == brandID).FirstOrDefault();
+                return db.tblBrands.Where(a => a.BrandID == brandID).Include(a => a.tblCars).SingleOrDefault();
             }
         }
         public void addBrand(tblBrands brand)

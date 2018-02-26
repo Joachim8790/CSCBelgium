@@ -15,8 +15,8 @@ namespace CSCBelgium.DAO
         {
             using (var db = new CSCbelgiumDatabaseEntities())
             {
-                ICollection<tblCars> NotSoldCars = db.tblCars.Include(a => a.tblBrands).Include(b => b.tblColors).Where(a => a.Sold ==0).OrderByDescending(a => a.Createdate).ToList();
-                ICollection<tblCars> SoldCars = db.tblCars.Include(a => a.tblBrands).Include(b => b.tblColors).Where(a => a.Sold == 1).OrderByDescending(a => a.Createdate).ToList();
+                ICollection<tblCars> NotSoldCars = db.tblCars.Include(a => a.tblBrands).Include(b => b.tblColors).Include(a => a.tblImages).Where(a => a.Sold ==0).OrderByDescending(a => a.Createdate).ToList();
+                ICollection<tblCars> SoldCars = db.tblCars.Include(a => a.tblBrands).Include(b => b.tblColors).Include(a => a.tblImages).Where(a => a.Sold == 1).OrderByDescending(a => a.Createdate).ToList();
                 return NotSoldCars.Union(SoldCars).ToList();
             }
 
@@ -25,7 +25,7 @@ namespace CSCBelgium.DAO
         {
             using (var db = new CSCbelgiumDatabaseEntities())
             {
-                return db.tblImages.ToList();
+                return db.tblImages.Include(a => a.tblCars).ToList();
             }
 
         }
@@ -33,7 +33,7 @@ namespace CSCBelgium.DAO
         {
             using (var db = new CSCbelgiumDatabaseEntities())
             {
-                return db.tblCars.Where(a => a.CarID == CarID).FirstOrDefault();
+                return db.tblCars.Where(a => a.CarID == CarID).SingleOrDefault();
             }
 
         }
@@ -152,7 +152,7 @@ namespace CSCBelgium.DAO
             using (var db = new CSCbelgiumDatabaseEntities())
             {
 
-                return db.tblImages.Where(a => a.ImageOrder == 0).ToList();
+                return db.tblImages.Where(a => a.ImageOrder == 0).Include(a => a.tblCars).ToList();
             }
         }
         public ICollection<tblImages> getXImagesOfCarY(int numberOfImages, int CarID)

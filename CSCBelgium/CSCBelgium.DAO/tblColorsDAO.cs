@@ -15,14 +15,14 @@ namespace CSCBelgium.DAO
         {
             using (var db = new CSCbelgiumDatabaseEntities())
             {
-                return db.tblColors.ToList();
+                return db.tblColors.Include(a => a.tblCars).ToList();
             }
         }
         public tblColors getColor(int colorID)
         {
             using (var db = new CSCbelgiumDatabaseEntities())
             {
-                return db.tblColors.Where(a => a.ColorID == colorID).FirstOrDefault();
+                return db.tblColors.Where(a => a.ColorID == colorID).Include(a => a.tblCars).SingleOrDefault();
             }
         }
         public void addColor(tblColors color)

@@ -160,20 +160,29 @@
                 <div class="card car">
                    @if (service.isSold(Model.cars.ElementAt(i)))
                    {
-                    <div class="ribbon"><span>VERKOCHT</span></div>
-                    <a href="#">
-                        <div class="card-image waves-effect waves-block waves-light" style="height:250px;width:100%;background:url('../../Content/FileSystem/@afbeeldingen.Where(a=>a.CarID == Model.cars.ElementAt(i).CarID).First().ImagePath') no-repeat center center ;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
-                            @*<img alt="" class="activator" src="data:image;base64,@System.Convert.ToBase64String(post.PostImage)" />*@
-                        </div>
-                    </a>
+                       if (@afbeeldingen.Where(a => a.CarID == Model.cars.ElementAt(i).CarID).FirstOrDefault() != null)
+                       {
+                        <div class="ribbon"><span>VERKOCHT</span></div>
+                                            <a href="#">
+                                                <div class="card-image waves-effect waves-block waves-light" style="height:250px;width:100%;background:url('../../Content/FileSystem/@afbeeldingen.Where(a=>a.CarID == Model.cars.ElementAt(i).CarID).FirstOrDefault().ImagePath') no-repeat center center ;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+                                                    @*<img alt="" class="activator" src="data:image;base64,@System.Convert.ToBase64String(post.PostImage)" />*@
+
+                                                </div>
+                                            </a>
+                       }
+
                    }
                    else
                    {
-                    <a href="@Url.Action("CarDetails","Home",new { carID = Model.cars.ElementAt(i).CarID })">
-                        <div class="card-image waves-effect waves-block waves-light" style="height:250px;width:100%;background:url('../../Content/FileSystem/@afbeeldingen.Where(a=>a.CarID == Model.cars.ElementAt(i).CarID).First().ImagePath') no-repeat center center ;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
-                            @*<img alt="" class="activator" src="data:image;base64,@System.Convert.ToBase64String(post.PostImage)" />*@
+                       if (@afbeeldingen.Where(a => a.CarID == Model.cars.ElementAt(i).CarID).FirstOrDefault() != null)
+                       {
+                    <a href="@Url.Action("CarDetails", "Home", new { carID = Model.cars.ElementAt(i).CarID })">
+                        <div class="card-image waves-effect waves-block waves-light" style="height:250px;width:100%;background:url('../../Content/FileSystem/@afbeeldingen.Where(a => a.CarID == Model.cars.ElementAt(i).CarID).FirstOrDefault().ImagePath') no-repeat center center ;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+                         
+                              @*<img alt="" class="activator" src="data:image;base64,@System.Convert.ToBase64String(post.PostImage)" />*@
                         </div>
                     </a>
+                       }
                    }
 
                     <div class="card-content">
@@ -203,7 +212,8 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
-    var sliderprice = document.getElementById('price-slider');
+        var sliderprice = document.getElementById('price-slider');
+        
     noUiSlider.create(sliderprice, {
         start: [@Convert.ToInt32(Math.Floor(Model.minPrice/1000)), @Convert.ToInt32(Math.Ceiling(Model.maxPrice/1000))],
         connect: true,
