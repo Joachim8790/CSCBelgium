@@ -164,20 +164,28 @@
                        {
                         <div class="ribbon"><span>VERKOCHT</span></div>
                                             <a href="#">
-                                                <div class="card-image waves-effect waves-block waves-light" style="height:250px;width:100%;background:url('../../Content/FileSystem/@afbeeldingen.Where(a=>a.CarID == Model.cars.ElementAt(i).CarID).FirstOrDefault().ImagePath') no-repeat center center ;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+                                                @{
+                                                            String cloudimageurl = "https://cloudfilesystem.blob.core.windows.net/filesystem/"+Model.images.Where(x => x.CarID == Model.cars.ElementAt(i).CarID).FirstOrDefault().ImagePath;
+                                                        }
+                                                <div class="card-image waves-effect waves-block waves-light" style="height:250px;width:100%;background:url('@cloudimageurl') no-repeat center center ;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
                                                     @*<img alt="" class="activator" src="data:image;base64,@System.Convert.ToBase64String(post.PostImage)" />*@
-
+                                                    
+                                                    
+                                                    
                                                 </div>
                                             </a>
-                       }
+                                                            }
 
-                   }
-                   else
-                   {
-                       if (@afbeeldingen.Where(a => a.CarID == Model.cars.ElementAt(i).CarID).FirstOrDefault() != null)
-                       {
+                                                        }
+                                                        else
+                                                        {
+                                                            if (@afbeeldingen.Where(a => a.CarID == Model.cars.ElementAt(i).CarID).FirstOrDefault() != null)
+                                                            {
                     <a href="@Url.Action("CarDetails", "Home", new { carID = Model.cars.ElementAt(i).CarID })">
-                        <div class="card-image waves-effect waves-block waves-light" style="height:250px;width:100%;background:url('../../Content/FileSystem/@afbeeldingen.Where(a => a.CarID == Model.cars.ElementAt(i).CarID).FirstOrDefault().ImagePath') no-repeat center center ;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+                        @{
+                            String cloudimageurl = "https://cloudfilesystem.blob.core.windows.net/filesystem/" + Model.images.Where(x => x.CarID == Model.cars.ElementAt(i).CarID).FirstOrDefault().ImagePath;
+                        }
+                        <div class="card-image waves-effect waves-block waves-light" style="height:250px;width:100%;background:url('@cloudimageurl') no-repeat center center ;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
                          
                               @*<img alt="" class="activator" src="data:image;base64,@System.Convert.ToBase64String(post.PostImage)" />*@
                         </div>

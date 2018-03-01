@@ -46,34 +46,7 @@ namespace CSCBelgium.Controllers
             //}
             return View();
         }
-        private void addCarImagesToFileSystem(tblImages image, byte[] ImageArray)
-        {
-            string filename = "Image" + image.ImageID + ".jpg";
-            System.IO.Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"Content\Filesystem");
-            System.IO.Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"Content\Filesystem\Cars\Car" + image.CarID);
 
-            var fs = new BinaryWriter(new FileStream(AppDomain.CurrentDomain.BaseDirectory + @"Content\Filesystem\Cars\Car" + image.CarID + @"\" + filename, FileMode.Append, FileAccess.Write));
-            fs.Write(ImageArray);
-            fs.Close();
-        }
-        private void addSlideImagesToFileSystem(tblSlides slide, byte[] ImageArray)
-        {
-            string filename = "slide.jpg";
-            System.IO.Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"Content\Filesystem");
-            System.IO.Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"Content\Filesystem\Slides\Slide" + slide.SlideID);
-
-            var fs = new BinaryWriter(new FileStream(AppDomain.CurrentDomain.BaseDirectory + @"Content\Filesystem\Slides\Slide" + slide.SlideID + @"\" + filename, FileMode.Append, FileAccess.Write));
-            fs.Write(ImageArray);
-            fs.Close();
-        }
-        private void deleteSlideImagesFromFileSystem(int slideid)
-        {
-            System.IO.Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + @"Content\FileSystem\Slides\Slide" + slideid, true);
-        }
-        private void deleteCarImagesFromFileSystem(int carid)
-        {
-            System.IO.Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + @"Content\FileSystem\Cars\Car"+carid, true);
-        }
         [Authorize]
         public ActionResult EditCar(int carID)
         {
@@ -92,35 +65,6 @@ namespace CSCBelgium.Controllers
             return View(vm);
 
         }
-        //private static byte[] ResizeImage(byte[] array, float resizePercentage, bool OnlyWhenGreaterThan800kB = false)
-        //{
-        //    if (OnlyWhenGreaterThan800kB)
-        //    {
-        //        if (array.Length < 800000)
-        //        {
-        //            Debug.WriteLine("Afbeelding is reeds kleiner dan 800 kB");
-        //            return array;
-        //        }
-        //    }
-        //    Bitmap image;
-        //    using (var ms = new System.IO.MemoryStream(array))
-        //    {
-        //        image = new Bitmap(ms);
-        //    }
-        //    int currentWidth = image.Width;
-        //    int currentHeight = image.Height;
-        //    int width = (int)((float)currentWidth * resizePercentage);
-        //    int height = (int)((float)currentHeight * resizePercentage);
-        //    Bitmap resizedImage = new Bitmap(width, height);
-        //    using (Graphics gfx = Graphics.FromImage(resizedImage))
-        //    {
-        //        gfx.DrawImage(image, new Rectangle(0, 0, width, height),
-        //            new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
-        //    }
-        //    ImageConverter converter = new ImageConverter();
-        //    return (byte[])converter.ConvertTo(resizedImage, typeof(byte[]));
-
-        //}
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -177,7 +121,7 @@ namespace CSCBelgium.Controllers
                     iservice.AddImage(Image);
                     Image.ImagePath = @"Cars/Car" + car.CarID + @"/Image" + Image.ImageID + ".jpg";
                     iservice.UpdateImage(Image);
-                    addCarImagesToFileSystem(Image, image);
+                    
 
                 }
                 else
@@ -238,17 +182,15 @@ namespace CSCBelgium.Controllers
                 {
                     tblImages Image = new tblImages();
                     System.Diagnostics.Debug.WriteLine("image");
-                    MemoryStream target = new MemoryStream();
-                    files.ElementAt(i).InputStream.CopyTo(target);
-                    byte[] image = target.ToArray();
-                    Image.CarID = car.CarID;
+                    Image.CarID = 56;
                     Image.ImageOrder = i;
                     Image.ImagePath =@"Cars\Car"+car.CarID+@"\Image";
                     tblImagesService iservice = new tblImagesService();
                     iservice.AddImage(Image);
                     Image.ImagePath = @"Cars/Car" + car.CarID + @"/Image" + Image.ImageID+".jpg" ;
                     iservice.UpdateImage(Image);
-                    addCarImagesToFileSystem(Image, image);
+                    CSCBelgiumCloudService cloudservice = new CSCBelgiumCloudService();
+                    cloudservice.UploadImageAsBlob(Image, files.ElementAt(i));
 
                 }
                 else
@@ -413,7 +355,7 @@ namespace CSCBelgium.Controllers
                     service.addSlide(slide);
                     slide.ImagePath = @"Slides/Slide" + slide.SlideID + @"/slide.jpg";
                     service.UpdateSlide(slide);
-                    addSlideImagesToFileSystem(slide, image);
+                    //addSlideImagesToFileSystem(slide, image);
                     return RedirectToAction("ManageSliderImages");
 
                 }
@@ -536,7 +478,9 @@ namespace CSCBelgium.Controllers
 
             tblCarsService carservice = new tblCarsService();
             carservice.deleteCar(id);
-            deleteCarImagesFromFileSystem(id);
+            CSCBelgiumCloudService cloudService = new CSCBelgiumCloudService();
+            cloudService.DeleteCarImagesFromStorage(id);
+
 
         }
         [Authorize]
@@ -557,7 +501,7 @@ namespace CSCBelgium.Controllers
 
             tblSlidesService slideService = new tblSlidesService();
             slideService.deleteSlide(id);
-            deleteSlideImagesFromFileSystem(id);
+            //deleteSlideImagesFromFileSystem(id);
 
         }
         [Authorize]
