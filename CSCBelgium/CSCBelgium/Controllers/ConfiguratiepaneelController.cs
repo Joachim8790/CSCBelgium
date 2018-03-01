@@ -182,7 +182,7 @@ namespace CSCBelgium.Controllers
                 {
                     tblImages Image = new tblImages();
                     System.Diagnostics.Debug.WriteLine("image");
-                    Image.CarID = 56;
+                    Image.CarID = car.CarID;
                     Image.ImageOrder = i;
                     Image.ImagePath =@"Cars\Car"+car.CarID+@"\Image";
                     tblImagesService iservice = new tblImagesService();
