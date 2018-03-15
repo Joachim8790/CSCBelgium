@@ -355,7 +355,8 @@ namespace CSCBelgium.Controllers
                     service.addSlide(slide);
                     slide.ImagePath = @"Slides/Slide" + slide.SlideID + @"/slide.jpg";
                     service.UpdateSlide(slide);
-                    //addSlideImagesToFileSystem(slide, image);
+                    CSCBelgiumCloudService cloudservice = new CSCBelgiumCloudService();
+                    cloudservice.UploadImageAsBlob(slide, file);
                     return RedirectToAction("ManageSliderImages");
 
                 }
@@ -501,7 +502,9 @@ namespace CSCBelgium.Controllers
 
             tblSlidesService slideService = new tblSlidesService();
             slideService.deleteSlide(id);
-            //deleteSlideImagesFromFileSystem(id);
+            CSCBelgiumCloudService cloudService = new CSCBelgiumCloudService();
+            cloudService.DeleteSlideImagesFromStorage(id);
+
 
         }
         [Authorize]
