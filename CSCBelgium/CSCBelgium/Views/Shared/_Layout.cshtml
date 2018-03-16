@@ -64,6 +64,14 @@
                     <li><b><a href="@Url.Action("Index","Home")">home</a></b></li>
                     <li><b><a href="@Url.Action("Cars","Home")">wagens <span class="new badge">@CarsInStock in stock</span></a></b></li>
                     <li><b><a href="@Url.Action("SellCar","Home")">verkoop uw wagen</a></b></li>
+                    @if ((string)ViewContext.RouteData.Values["action"] == "Index")
+                    {
+                        <li><b><a href="#findCarForYou">op zoek naar een specifieke wagen</a></b></li>
+                    }
+                    else
+                    {
+                        <li><b><a href="@Url.Action("Index","Home",new {element = "findCarForYou" })">op zoek naar een specifieke wagen</a></b></li>
+                    }
                     <li><b><a href="@Url.Action("Rims","Home")">velgen</a></b></li>
                     <li><b><a href="@Url.Action("Services","Home")">services</a></b></li>
                     <li><b><a href="@Url.Action("Contact","Home")">contact</a></b></li>
@@ -76,6 +84,14 @@
                     <li><b><a href="@Url.Action("Index","Home")">home</a></b></li>
                     <li><b><a href="@Url.Action("Cars","Home")">wagens <span class="new badge">@CarsInStock in stock</span></a></b></li>
                     <li><b><a href="@Url.Action("SellCar","Home")">verkoop uw wagen</a></b></li>
+                    @if ((string)ViewContext.RouteData.Values["action"] == "Index")
+                    {
+                        <li><b><a href="#findCarForYou">op zoek naar een specifieke wagen</a></b></li>
+                    }
+                    else
+                    {
+                        <li><b><a href="@Url.Action("Index","Home",new {element = "findCarForYou" })">op zoek naar een specifieke wagen</a></b></li>
+                    }
                     <li><b><a href="@Url.Action("Rims","Home")">velgen</a></b></li>
                     <li><b><a href="@Url.Action("Services","Home")">services</a></b></li>
                     <li><b><a href="@Url.Action("Contact","Home")">contact</a></b></li>
@@ -112,6 +128,14 @@
                             <li><b><a href="@Url.Action("Index","Home")">home</a></b></li>
                             <li><b><a href="@Url.Action("Cars","Home")">wagens <span class="new badge">@CarsInStock in stock</span></a></b></li>
                             <li><b><a href="@Url.Action("SellCar","Home")">verkoop uw wagen</a></b></li>
+                            @if ((string)ViewContext.RouteData.Values["action"] == "Index")
+                            {
+                                <li><b><a href="#findCarForYou">op zoek naar een specifieke wagen</a></b></li>
+                            }
+                            else
+                            {
+                                <li><b><a href="@Url.Action("Index","Home",new {element = "findCarForYou" })">op zoek naar een specifieke wagen</a></b></li>
+                            }
                             <li><b><a href="@Url.Action("Rims","Home")">velgen</a></b></li>
                             <li><b><a href="@Url.Action("Services","Home")">services</a></b></li>
                             <li><b><a href="@Url.Action("Contact","Home")">contact</a></b></li>
@@ -132,5 +156,13 @@
         @Scripts.Render("~/bundles/bootstrap")
 
         @RenderSection("scripts", required: false)
+    @if ((string)ViewContext.RouteData.Values["action"] == "Index")
+    {
+        <script>
+        var element = document.getElementById('@Model.scrollToElement');
+        element.scrollIntoView(true);
+        </script>
+    }
+   
 </body>
 </html>

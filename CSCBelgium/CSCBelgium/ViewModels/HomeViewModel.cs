@@ -9,7 +9,8 @@ namespace CSCBelgium.ViewModels
 {
     public class HomeViewModel
     {
-        public ICollection<tblPosts> posts { get; set; }
+        public ICollection<tblCars> first8Cars { get; set; }
+        public ICollection<tblImages> firstImages { get; set; }
         [Display(Name ="Naam en voornaam")]
         public string name { get; set; }
         [Display(Name = "Emailadres")]
@@ -20,6 +21,7 @@ namespace CSCBelgium.ViewModels
         [Required]
         public string message { get; set; }
         public ICollection<tblSlides> slides { get; set; }
+        public string scrollToElement { get; set; }
 
     }
 }

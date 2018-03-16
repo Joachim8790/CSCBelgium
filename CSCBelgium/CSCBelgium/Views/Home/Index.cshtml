@@ -5,6 +5,7 @@
 }
 
 @using CSCBelgium.Views.Configuratiepaneel.CustomCode;
+@using CSCBelgium.Service;
 <div class="slider custom" style="height:550px;">
     <ul class="slides" style="height:550px;">
         @for (int i = 0; i < Model.slides.Count(); i++)
@@ -179,7 +180,7 @@
 
 </div>
 
-<div class="black_region">
+<div id="findCarForYou" class="black_region">
     <div class="contactform">
 @using (Html.BeginForm("Index", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form"}))
 {
@@ -189,7 +190,7 @@
     <div class="row">
 
         <div class="col-md-12">
-            <h3>Wenst u een afspraak</h3>
+            <h3>op zoek naar een specifieke wagen?</h3>
            
                 <div class="row" data-aos="fade-up">
                     <div class="input-field col s12 form">
@@ -251,28 +252,53 @@
     </div>
 </div>
 <div class="white_region">
-    <h3>News & Events</h3>
+    <h3>Cars for sale</h3>
     <div class="row" id="posts">
         
-            @for (int i = 0; i < Model.posts.Count; i++)
+            @for (int i = 0; i < Model.first8Cars.Count; i++)
             {
-                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="@(i*100)">
-<div class="card post">
-                        <div class="card-image waves-effect waves-block waves-light" style="height:250px;width:100%;background:url(data:image;base64,@System.Convert.ToBase64String(Model.posts.ElementAt(i).PostImage)) no-repeat center center ;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
-                            @*<img alt="" class="activator" src="data:image;base64,@System.Convert.ToBase64String(post.PostImage)" />*@
-                        </div>
+
+                tblCarsService service = new tblCarsService();
+                String cloudcarimage = "https://cloudfilesystem.blob.core.windows.net/filesystem/" + Model.firstImages.Where(x => x.CarID == Model.first8Cars.ElementAt(i).CarID).FirstOrDefault().ImagePath;
+                    if (!service.isSold(Model.first8Cars.ElementAt(i)))
+                    {
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="@(i * 100)">
+                        <div class="card post">
+                            <a href="@Url.Action("CarDetails", "Home", new { carID = Model.first8Cars.ElementAt(i).CarID })">
+                             <div class="card-image waves-effect waves-block waves-light" style="height:250px;width:100%;background:url('@cloudcarimage') no-repeat center center ;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+                         @*<img alt="" class="activator" src="data:image;base64,@System.Convert.ToBase64String(post.PostImage)" />*@
+                             </div>
                         <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4">@Model.posts.ElementAt(i).PostTitle.ToString()</span>
-                           
+                            <span class="card-title activator grey-text text-darken-4">@Model.first8Cars.ElementAt(i).CarModel.ToString()</span>
+
+                         </div>
+                            </a>
                         </div>
-                        <div class="card-reveal">
-                         
-                            <span class="card-title grey-text text-darken-4">@Model.posts.ElementAt(i).PostTitle.ToString()<i class="material-icons right">close</i></span>
-                            <p>@Model.posts.ElementAt(i).PostDescription.ToString()</p>
-                        </div>
+                       
                     </div>
-                </div>
+                    }
+                    else
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="@(i * 100)">
+                           
+                            <a href="">
+                                <div class="card post">
+                                    <div class="ribbon"><span>VERKOCHT</span></div>
+                                        <div class="card-image waves-effect waves-block waves-light" style="height:250px;width:100%;background:url('@cloudcarimage') no-repeat center center ;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+                                            @*<img alt="" class="activator" src="data:image;base64,@System.Convert.ToBase64String(post.PostImage)" />*@
+                                        </div>
+                                        <div class="card-content">
+                                            <span class="card-title activator grey-text text-darken-4">@Model.first8Cars.ElementAt(i).CarModel.ToString()</span>
+
+                                        </div>
+                                    
+                                </div>
+                                </a>
+</div>
+                    }
             }
-               
-    </div>
+<div data-aos="fade-up" data-aos-delay="300" style="text-align:center;padding-top:25px;clear: both;" class="col-sm-12 col-md-12 col-lg-12">
+    <a href="@Url.Action("Cars","Home")" class="btn">Bekijk ze allemaal</a>
+</div>
+</div>
 </div>

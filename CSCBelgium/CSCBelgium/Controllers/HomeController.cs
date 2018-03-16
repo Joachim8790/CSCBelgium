@@ -21,13 +21,15 @@ namespace CSCBelgium.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string element = "")
         {
             HomeViewModel vm = new HomeViewModel();
-            tblPostsService service = new tblPostsService();
+            tblCarsService service = new tblCarsService();
             tblSlidesService sservice = new tblSlidesService();
-            vm.posts = service.get30LastPosts();
+            vm.first8Cars = service.getAllCars().Take(8).ToList();
+            vm.firstImages = service.GetFrontImages().ToList();
             vm.slides = sservice.getSlides();
+            vm.scrollToElement = element;
             return View(vm);
         }
         [HttpPost]
