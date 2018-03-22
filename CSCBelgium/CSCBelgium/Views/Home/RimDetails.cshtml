@@ -40,7 +40,7 @@
         <div class="fotorama" data-nav="thumbs" data-width="100%" data-ratio="800/600" data-maxwidth="1000">
             @for (int i = 0; i < Model.images.Count(); i++)
             {
-                String cloudimageurl = "https://cloudfilesystem.blob.core.windows.net/filesystem/" + Model.images.Where(x => x.RimID == Model.images.ElementAt(i).RimID).FirstOrDefault().ImagePath;
+                String cloudimageurl = "https://cloudfilesystem.blob.core.windows.net/filesystem/" + Model.images.Where(x => x.ImageID == Model.images.ElementAt(i).ImageID).FirstOrDefault().ImagePath;
                 <img alt="" src="@cloudimageurl" />
             }
         </div>
