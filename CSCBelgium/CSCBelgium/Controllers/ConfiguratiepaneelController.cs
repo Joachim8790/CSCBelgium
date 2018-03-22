@@ -271,7 +271,7 @@ namespace CSCBelgium.Controllers
         {
             AddRimViewModel vm = new AddRimViewModel();
             tblRimsService service = new tblRimsService();
-            tblBrandsService bservice = new tblBrandsService();
+            tblRimBrandsService bservice = new tblRimBrandsService();
             vm.brandChoice = bservice.getBrands();
             return View(vm);
         }
