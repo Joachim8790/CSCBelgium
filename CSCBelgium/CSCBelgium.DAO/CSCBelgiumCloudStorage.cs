@@ -46,6 +46,17 @@ namespace CSCBelgium.DAO
                 }
             }
         }
+        public void DeleteRimImagesFromStorage(int rimID)
+        {
+            CloudBlobContainer container = blobClient.GetContainerReference("filesystem");
+            foreach (IListBlobItem blob in container.GetDirectoryReference("Rims/Rim" + rimID).ListBlobs(true))
+            {
+                if (blob.GetType() == typeof(CloudBlob) || blob.GetType().BaseType == typeof(CloudBlob))
+                {
+                    ((CloudBlob)blob).DeleteIfExists();
+                }
+            }
+        }
         public void UploadImageAsBlob(tblImages image, HttpPostedFileBase file)
         {
             file.InputStream.Position = 0;
@@ -58,6 +69,17 @@ namespace CSCBelgium.DAO
             blockBlob.UploadFromByteArray(Image, 0, Image.Length);
         }
         public void UploadImageAsBlob(tblSlides image, HttpPostedFileBase file)
+        {
+            file.InputStream.Position = 0;
+            CloudBlobContainer container = blobClient.GetContainerReference("filesystem");
+            CloudBlockBlob blockBlob = container.GetBlockBlobReference(image.ImagePath);
+            blockBlob.Properties.ContentType = "image/jpg";
+            MemoryStream target = new MemoryStream();
+            file.InputStream.CopyTo(target);
+            byte[] Image = target.ToArray();
+            blockBlob.UploadFromByteArray(Image, 0, Image.Length);
+        }
+        public void UploadImageAsBlob(tblRimImages image, HttpPostedFileBase file)
         {
             file.InputStream.Position = 0;
             CloudBlobContainer container = blobClient.GetContainerReference("filesystem");

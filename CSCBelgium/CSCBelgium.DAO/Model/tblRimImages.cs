@@ -16,7 +16,7 @@ namespace CSCBelgium.DAO.Model
     {
         public int ImageID { get; set; }
         public int RimID { get; set; }
-        public byte[] Image { get; set; }
+        public string ImagePath { get; set; }
     
         public virtual tblRims tblRims { get; set; }
     }

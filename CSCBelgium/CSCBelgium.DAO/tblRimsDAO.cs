@@ -46,6 +46,16 @@ namespace CSCBelgium.DAO
                 db.SaveChanges();
             }
         }
+
+        public void UpdateImage(tblRimImages image)
+        {
+            using (var db = new CSCbelgiumDatabaseEntities())
+            {
+                db.Entry(image).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
         public void deleteRim(int rimID)
         {
             using (var db = new CSCbelgiumDatabaseEntities())

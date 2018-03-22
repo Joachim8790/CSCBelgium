@@ -299,8 +299,13 @@ namespace CSCBelgium.Controllers
                     files.ElementAt(i).InputStream.CopyTo(target);
                     byte[] image = target.ToArray();
                     Image.RimID = rim.RimID;
-                    Image.Image = image;
-                    service.addRimImage(Image);
+                    Image.ImagePath = @"Rims/Rim" + rim.RimID + @"/Image";
+                    tblRimsService rimservice = new tblRimsService();
+                    rimservice.addRimImage(Image);
+                    Image.ImagePath = @"Rims/Rim" + rim.RimID + @"/Image" + Image.ImageID + ".jpg";
+                    rimservice.UpdateImage(Image);
+                    CSCBelgiumCloudService cloudservice = new CSCBelgiumCloudService();
+                    cloudservice.UploadImageAsBlob(Image, files.ElementAt(i));
 
                 }
                 else
@@ -515,6 +520,8 @@ namespace CSCBelgium.Controllers
 
             tblRimsService rimsService = new tblRimsService();
             rimsService.deleteRim(id);
+            CSCBelgiumCloudService cloudService = new CSCBelgiumCloudService();
+            cloudService.DeleteSlideImagesFromStorage(id);
         }
         [Authorize]
         [HttpDelete]

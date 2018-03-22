@@ -48,5 +48,10 @@ namespace CSCBelgium.Service
         {
             dao.SellRim(rim, sold);
         }
+
+        public void UpdateImage(tblRimImages image)
+        {
+            dao.UpdateImage(image);
+        }
     }
 }

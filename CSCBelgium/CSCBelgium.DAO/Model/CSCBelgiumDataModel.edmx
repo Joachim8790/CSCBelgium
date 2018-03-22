@@ -74,7 +74,7 @@
           </Key>
           <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RimID" Type="int" Nullable="false" />
-          <Property Name="Image" Type="image" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="tblRims">
           <Key>
@@ -268,8 +268,8 @@
           </Key>
           <Property Name="ImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RimID" Type="Int32" Nullable="false" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="tblRims" Relationship="Self.FK_tblRims_tblRimImages" FromRole="tblRimImages" ToRole="tblRims" />
+          <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblRims">
           <Key>
@@ -463,9 +463,9 @@
           <EntitySetMapping Name="tblRimImages">
             <EntityTypeMapping TypeName="CSCBelgiumDatabaseModel.tblRimImages">
               <MappingFragment StoreEntitySet="tblRimImages">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
                 <ScalarProperty Name="ImageID" ColumnName="ImageID" />
                 <ScalarProperty Name="RimID" ColumnName="RimID" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

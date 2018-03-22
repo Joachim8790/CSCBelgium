@@ -26,6 +26,11 @@ namespace CSCBelgium.Service
             storage.UploadImageAsBlob(image, file);
 
         }
+        public void UploadImageAsBlob(tblRimImages image, HttpPostedFileBase file)
+        {
+            storage.UploadImageAsBlob(image, file);
+
+        }
         public void DeleteCarImagesFromStorage(int carID)
         {
             storage.DeleteCarImagesFromStorage(carID);
@@ -34,6 +39,10 @@ namespace CSCBelgium.Service
         public void DeleteSlideImagesFromStorage(int id)
         {
             storage.DeleteSlideImagesFromStorage(id);
+        }
+        public void DeleteRimImagesFromStorage(int id)
+        {
+            storage.DeleteRimImagesFromStorage(id);
         }
     }
 }
