@@ -1,7 +1,7 @@
 ﻿@model CSCBelgium.ViewModels.RimDetailsViewModel
 @{
     ViewBag.Title = "RimDetails";
-    tblBrandsService bservice = new tblBrandsService();
+    tblRimBrandsService bservice = new tblRimBrandsService();
 
 }
 @using CSCBelgium.Service;
@@ -30,12 +30,18 @@
 </style>
 <div class="main" style="margin-right:0;">
     <div class="form-horizontal">
+        @{ 
 
-        <h4>@bservice.getBrand(Model.rim.RimBrandID).BrandName @Model.rim.RimModel</h4>
+           
+
+
+        }
+        <h4>@bservice.getBrand(Model.rim.RimBrandID).RimBrandName @Model.rim.RimModel</h4>
         <div class="fotorama" data-nav="thumbs" data-width="100%" data-ratio="800/600" data-maxwidth="1000">
             @for (int i = 0; i < Model.images.Count(); i++)
             {
-                <img alt="" src="data:image;base64,@System.Convert.ToBase64String(Model.images.ElementAt(i).Image)" />
+                String cloudimageurl = "https://cloudfilesystem.blob.core.windows.net/filesystem/" + Model.images.Where(x => x.RimID == Model.images.ElementAt(i).RimID).FirstOrDefault().ImagePath;
+                <img alt="" src="@cloudimageurl" />
             }
         </div>
 

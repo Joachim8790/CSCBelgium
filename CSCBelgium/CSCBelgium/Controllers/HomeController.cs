@@ -274,10 +274,10 @@ namespace CSCBelgium.Controllers
             {
                
                 RimDetailsViewModel vm = new RimDetailsViewModel();
-                tblBrandsService bservice = new tblBrandsService();
+                tblRimBrandsService bservice = new tblRimBrandsService();
                 vm.rim = service.getRim(rimID);
                 vm.images = service.getImagesOfRim(rimID);
-                vm.rimbrand = bservice.getBrand(vm.rim.RimBrandID).BrandName;
+                vm.rimbrand = bservice.getBrand(vm.rim.RimBrandID).RimBrandName;
                 vm.rimmodel = vm.rim.RimModel;
                 return View(vm);
             }
