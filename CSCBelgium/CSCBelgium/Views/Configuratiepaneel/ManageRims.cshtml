@@ -63,10 +63,7 @@
 
 
                             <td>
-                                @foreach (var image in Model.images.Where(a => a.RimID == Model.rims.ElementAt(i).RimID))
-                                {
-                                    <img alt="" class="postimage" src="data:image;base64,@System.Convert.ToBase64String(image.Image)" width="80" height="80" />
-                                }
+                                
 
                             </td>
 
