@@ -281,7 +281,7 @@ namespace CSCBelgium.Controllers
         public ActionResult AddRim(AddRimViewModel vm)
         {
             tblRimsService service = new tblRimsService();
-            tblBrandsService bservice = new tblBrandsService();
+            tblRimBrandsService bservice = new tblRimBrandsService();
             tblRims rim = new tblRims();
             rim.RimBrandID = vm.selectedBrandId;
             rim.RimModel = vm.rim.RimModel;

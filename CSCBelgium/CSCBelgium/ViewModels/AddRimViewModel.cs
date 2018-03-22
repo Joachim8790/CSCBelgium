@@ -9,7 +9,7 @@ namespace CSCBelgium.ViewModels
     public class AddRimViewModel
     {
         public tblRims rim { get; set; }
-        public IEnumerable<tblBrands> brandChoice { get; set; }
+        public IEnumerable<tblRimBrands> brandChoice { get; set; }
         public int selectedBrandId { get; set; }
         public IEnumerable<HttpPostedFileBase> files { get; set; }
     }
