@@ -246,7 +246,9 @@
     <Content Include="Content\Images\avatarDefault.png" />
     <Content Include="Content\Images\avatarLucas.JPG" />
     <Content Include="Content\Images\contactbg.jpg" />
+    <Content Include="Content\Images\fb.png" />
     <Content Include="Content\Images\facebook.png" />
+    <Content Include="Content\Images\insta.png" />
     <Content Include="Content\Images\logo.jpg" />
     <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\logocontact.png" />
